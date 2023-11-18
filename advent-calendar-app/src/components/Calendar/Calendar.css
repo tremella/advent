@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px; /* Fixed height for each cell */
+    height: 200px; /* Fixed height for each cell */
     background-color: #f0f0f0;
     border-radius: 10px;
     cursor: pointer;
