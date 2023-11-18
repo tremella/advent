@@ -1,0 +1,21 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Fixed height for each cell */
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .calendar-day:hover {
+    background-color: #e0e0e0;
+  }

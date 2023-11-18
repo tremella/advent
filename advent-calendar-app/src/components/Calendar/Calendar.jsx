@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import Day from './Day';
-import Modal from 'react-modal';
-import styled from 'styled-components';
+import React from 'react';
+import './Calendar.css'; // Make sure to create a corresponding CSS file for styling
 
+const Calendar = ({ onDayClick }) => {
+  const days = Array.from({ length: 24 }, (_, i) => i + 1);
 
-const CalendarContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Adjust the number of columns as needed */
-  gap: 10px; /* Adjust the gap between squares */
-`;
+  return (
+    <div className="calendar">
+      {days.map(day => (
+        <div key={day} className="calendar-day" onClick={() => onDayClick(day)}>
+          {day}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Calendar;
