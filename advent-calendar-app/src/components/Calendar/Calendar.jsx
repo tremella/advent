@@ -42,7 +42,7 @@ const Calendar = ({ contentData }) => {
   return (
     <div className="calendar">
       {Array.from({ length: 24 }, (_, i) => i + 1).map(day => (
-        <div key={day} className="calendar-day" onClick={() => handleDayClick(day)}>
+        <div key={`day-${day}`} className="calendar-day" onClick={() => handleDayClick(day)}>
           <div className="day-number">{day}</div>
           {selectedDay === day && contentData[selectedDay] && contentData[selectedDay].type !== 'javascript' && (
             <div className="content-container">
@@ -66,10 +66,11 @@ const Calendar = ({ contentData }) => {
           }}
           contentLabel="JavaScript Animation Modal"
         >
-          <div onClick={closeModal}>
-            {renderContent(selectedDay)}
-          </div>
-        </Modal>
+        <div className="modal-content">
+        {selectedDay !== null && renderContent(selectedDay)}
+          <button className="modal-close" onClick={closeModal}>X</button>
+        </div>
+         </Modal>
       )}
     </div>
   );
