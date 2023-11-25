@@ -1,3 +1,9 @@
+:root {
+    --cell-width: 50px;
+    --cell-gap: 5px;
+    --num-letters: 4;
+}
+
 #mini_wordle {
     background-color: #fff;
     padding: 20px;
@@ -5,20 +11,24 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     border: 3px solid #006400; /* Dark green border for a Christmas tree effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #mini_wordle #grid {
     width: 200px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0px 0px;
+    grid-template-columns: repeat(var(--num-letters), var(--cell-width));
+    gap: var(--cell-gap);
     margin-bottom: 20px;
     margin-left:auto;
     margin-right:auto;
+    box-sizing: border-box; /* Include padding and borders in the width */
 }
 
 #mini_wordle .cell {
-    width: 50px;
+    width: var(--cell-width);
     height: 50px;
     border: 2px solid #333;
     text-align: center;
@@ -27,6 +37,7 @@
     border-radius: 5px;
     background-color: #f8f8f8;
     border-color: #8b0000; /* Dark red for a festive touch */
+    box-sizing: border-box; /* Include padding and borders in the width */
 }
 
 #mini_wordle .correct {
@@ -44,11 +55,14 @@
     color:white;
 }
 
-input[type="text"] {
-    background-color: white;
+#mini_wordle input[type="text"] {
+    width: calc((var(--cell-width) * var(--num-letters)) + (var(--cell-gap) * (var(--num-letters) - 1)));
     padding: 10px;    
     border-radius: 5px;
-    width: calc(100% - 24px); /* Account for padding and border */
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* To ensure it takes up the full width */
+    box-sizing: border-box; /* Include padding and borders in the width */
 }
 
 #mini_wordle button {
@@ -64,10 +78,4 @@ input[type="text"] {
 
 #mini_wordle button:hover {
     background-color: #0c48db;
-}
-
-#mini_wordle .cell[contenteditable="true"] {
-    cursor: text;
-    text-align: center;
-    /* ... other styles ... */
 }

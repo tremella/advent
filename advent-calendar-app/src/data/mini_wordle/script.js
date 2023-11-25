@@ -23,18 +23,26 @@ function initGame() {
         }
     }
 
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = 'guessInput';
-    input.maxLength = num_letters;
-    gameContainer.appendChild(input);
+// Container for the input
+const inputContainer = document.createElement('div');
+gameContainer.appendChild(inputContainer);
 
-    const button = document.createElement('button');
-    button.textContent = 'Guess';
-    button.addEventListener('click', submitGuess);
-    gameContainer.appendChild(button);
+const input = document.createElement('input');
+input.type = 'text';
+input.id = 'guessInput';
+input.maxLength = num_letters;
+inputContainer.appendChild(input); // Add input to its container
 
-    container.appendChild(gameContainer); // Append the game container to the body
+// Container for the button
+const buttonContainer = document.createElement('div');
+gameContainer.appendChild(buttonContainer);
+
+const button = document.createElement('button');
+button.textContent = 'Guess';
+button.addEventListener('click', submitGuess);
+buttonContainer.appendChild(button); // Add button to its container
+
+container.appendChild(gameContainer); // Append the game container to the 
 }
 
 
@@ -65,16 +73,35 @@ function submitGuess() {
 }
 
 function updateGrid(guess) {
+    let targetLetterCounts = {};
+
+    // First, count the letters in the target word
+    for (let i = 0; i < num_letters; i++) {
+        const letter = targetWord[i];
+        targetLetterCounts[letter] = (targetLetterCounts[letter] || 0) + 1;
+    }
+
+    // First pass: Mark correct guesses and update counts
     for (let i = 0; i < num_letters; i++) {
         let cell = document.getElementById(`cell-${guesses}-${i}`);
         cell.textContent = guess[i];
 
         if (targetWord[i] === guess[i]) {
             cell.classList.add("correct");
-        } else if (targetWord.includes(guess[i])) {
-            cell.classList.add("present");
-        } else {
-            cell.classList.add("absent");
+            targetLetterCounts[guess[i]] -= 1;
+        }
+    }
+
+    // Second pass: Mark present guesses considering updated counts
+    for (let i = 0; i < num_letters; i++) {
+        let cell = document.getElementById(`cell-${guesses}-${i}`);
+        if (!cell.classList.contains("correct")) {
+            if (targetWord.includes(guess[i]) && targetLetterCounts[guess[i]] > 0) {
+                cell.classList.add("present");
+                targetLetterCounts[guess[i]] -= 1;
+            } else {
+                cell.classList.add("absent");
+            }
         }
     }
 }
