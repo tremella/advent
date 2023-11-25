@@ -28,7 +28,6 @@ const Calendar = ({ contentData }) => {
   const renderContent = (day) => {
     const dayData = contentData[day];
     if (!dayData) return null;
-
     switch(dayData.type) {
       case 'youtube':
         return <YoutubeContent data={dayData} />;
