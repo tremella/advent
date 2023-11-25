@@ -11,14 +11,37 @@ const Calendar = ({ contentData }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const isDateValid = day => {
+
+    // change this to december when it happens. Until then, we test in november. 
+    const startDate = new Date(2023, 10, 1); // November is 10 because months are zero-indexed
+    
+    const currentDate = new Date();
+    // const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
+
+    
+    if (day <= currentDate.getDate() && currentDate >= startDate) {
+      return true;
+    } else {
+      // You can handle the error case here, e.g., log an error message or play an error noise
+      console.error('Invalid date selected.');
+      return false;
+    }
+  };
+
   const handleDayClick = day => {
     const dayData = contentData[day];
     setSelectedDay(day);
     console.log('dayData', dayData);
-
-    // Open modal only if the day's content is a JavascriptAnimation
-    if (dayData && dayData.type === 'javascript' || dayData.type === 'youtube') {
-      setIsModalOpen(true);
+  
+    if (isDateValid(day)) {
+      // Open modal only if the day's content is a JavascriptAnimation or Youtube
+      if (dayData && (dayData.type === 'javascript' || dayData.type === 'youtube')) {
+        setIsModalOpen(true);
+      } else {
+        // Play error noise or show an error message
+        console.error('Invalid content for the selected day.');
+      }
     }
   };
 
