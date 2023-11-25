@@ -7,13 +7,14 @@
   
   .calendar-day {
     position: relative; /* Needed for absolute positioning inside the cell */
-    background-color: #f0f0f0;
+    background-color: rgb(10, 73, 0);
+    color: #fff;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     overflow: hidden; /* Added to handle content overflow */
   }
-  
+ 
   .calendar-day::before {
     content: '';
     display: block;
@@ -32,7 +33,7 @@
   }
   
   .calendar-day:hover {
-    background-color: #e0e0e0;
+    background-color: rgb(15, 101, 2);
   }
   
   /* Style for the day number */
