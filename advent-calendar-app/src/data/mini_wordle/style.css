@@ -4,8 +4,9 @@
     --num-letters: 4;
 }
 
+/* modal container */
 #mini_wordle {
-    background-color: #fff;
+    background-color: #fefff0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,8 +17,9 @@
     align-items: center;
 }
 
+/* grid containing cells */
 #mini_wordle #grid {
-    width: 200px;
+    width: 220px;
     display: grid;
     grid-template-columns: repeat(var(--num-letters), var(--cell-width));
     gap: var(--cell-gap);
@@ -25,6 +27,7 @@
     margin-left:auto;
     margin-right:auto;
     box-sizing: border-box; /* Include padding and borders in the width */
+    /* background-color: yellow; */
 }
 
 #mini_wordle .cell {
@@ -36,7 +39,7 @@
     line-height: 50px;
     border-radius: 5px;
     background-color: #f8f8f8;
-    border-color: #8b0000; /* Dark red for a festive touch */
+    border-color: #8f8f8f; /* Dark red for a festive touch */
     box-sizing: border-box; /* Include padding and borders in the width */
 }
 
@@ -46,7 +49,7 @@
 }
 
 #mini_wordle .present {
-    background-color: #ffeb3b; /* Yellow color for present but misplaced letters */
+    background-color: #fae954; /* Yellow color for present but misplaced letters */
     color:white;
 }
 
@@ -66,7 +69,7 @@
 }
 
 #mini_wordle button {
-    background-color: #1a73e8; /* Button color */
+    border-color: #1a73e8; /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -78,4 +81,17 @@
 
 #mini_wordle button:hover {
     background-color: #0c48db;
+}
+
+#guessInput {
+    /* background-color: blue; */
+    border: 2px solid #8f8f8f
+}
+
+#inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+    /* padding: 10px; */
 }

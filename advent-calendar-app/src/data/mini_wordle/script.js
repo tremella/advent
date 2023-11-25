@@ -24,7 +24,8 @@ function initGame() {
     }
 
 // Container for the input
-const inputContainer = document.createElement('div');
+const inputContainer = document.createElement("div");
+inputContainer.id = 'inputContainer';
 gameContainer.appendChild(inputContainer);
 
 const input = document.createElement('input');
