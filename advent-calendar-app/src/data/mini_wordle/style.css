@@ -1,28 +1,73 @@
-
-#grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+#mini_wordle {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 3px solid #006400; /* Dark green border for a Christmas tree effect */
 }
 
-.cell {
+#mini_wordle #grid {
+    width: 200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px 0px;
+    margin-bottom: 20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#mini_wordle .cell {
     width: 50px;
     height: 50px;
-    border: 1px solid #333;
+    border: 2px solid #333;
     text-align: center;
     font-size: 20px;
     line-height: 50px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    border-color: #8b0000; /* Dark red for a festive touch */
 }
 
-.correct {
-    background-color: green;
+#mini_wordle .correct {
+    background-color: #4caf50; /* Green color for correct letters */
+    color:white;
 }
 
-.present {
-    background-color: yellow;
+#mini_wordle .present {
+    background-color: #ffeb3b; /* Yellow color for present but misplaced letters */
+    color:white;
 }
 
-.absent {
-    background-color: grey;
+#mini_wordle .absent {
+    background-color: #f44336; /* Red color for absent letters */
+    color:white;
+}
+
+input[type="text"] {
+    background-color: white;
+    padding: 10px;    
+    border-radius: 5px;
+    width: calc(100% - 24px); /* Account for padding and border */
+}
+
+#mini_wordle button {
+    background-color: #1a73e8; /* Button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#mini_wordle button:hover {
+    background-color: #0c48db;
+}
+
+#mini_wordle .cell[contenteditable="true"] {
+    cursor: text;
+    text-align: center;
+    /* ... other styles ... */
 }

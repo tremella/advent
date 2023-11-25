@@ -1,11 +1,11 @@
 
 (function() {
 const container = document.getElementById('mini_wordle');
-const targetWord = "apple"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
+const targetWord = "yule"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
 const maxGuesses = 6;
+let num_letters = 4;
 let currentGuess = [];
 let guesses = 0;
-let validWords = ["apple", "hello", "world", "there", "about", "again", "heart", "pizza", "water", "happy", "sixty", "board", "month", "angel", "death", "green", "music", "fifty", "three", "party", "piano", "mouth", "woman", "sugar", "amber", "dream", "apple", "laugh", "tiger", "faith", "earth", "river", "money", "peace", "forty", "words", "smile", "abate", "house", "alone", "watch", "lemon", "south", "erica", "anime", "after", "santa"];
 
 function initGame() {
     const gameContainer = document.createElement('div');
@@ -15,7 +15,7 @@ function initGame() {
     gameContainer.appendChild(grid);
 
     for (let i = 0; i < maxGuesses; i++) {
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < num_letters; j++) {
             let cell = document.createElement('div');
             cell.id = `cell-${i}-${j}`;
             cell.classList.add('cell');
@@ -26,7 +26,7 @@ function initGame() {
     const input = document.createElement('input');
     input.type = 'text';
     input.id = 'guessInput';
-    input.maxLength = 5;
+    input.maxLength = num_letters;
     gameContainer.appendChild(input);
 
     const button = document.createElement('button');
@@ -40,8 +40,8 @@ function initGame() {
 
 function submitGuess() {
     let guess = document.getElementById("guessInput").value.toLowerCase();
-    if (guess.length !== 5) {
-        alert("Enter a 5-letter word");
+    if (guess.length !== num_letters) {
+        alert("Enter a 4-letter word");
         return;
     }
 
@@ -65,7 +65,7 @@ function submitGuess() {
 }
 
 function updateGrid(guess) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < num_letters; i++) {
         let cell = document.getElementById(`cell-${guesses}-${i}`);
         cell.textContent = guess[i];
 
@@ -78,5 +78,13 @@ function updateGrid(guess) {
         }
     }
 }
-initGame();
+let validWords = [];
+
+fetch('/src/data/mini_wordle/four_letter_words.txt')
+  .then(response => response.text())
+  .then(text => {
+    validWords = text.split('\n').map(word => word.trim());
+    console.log(validWords);
+    initGame(); // Initialize the game after loading the words
+  });
 })();
