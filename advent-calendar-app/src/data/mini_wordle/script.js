@@ -32,6 +32,11 @@ const input = document.createElement('input');
 input.type = 'text';
 input.id = 'guessInput';
 input.maxLength = num_letters;
+input.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        document.getElementById('guessButton').click();
+    }
+});
 inputContainer.appendChild(input); // Add input to its container
 
 // Container for the button
@@ -39,6 +44,7 @@ const buttonContainer = document.createElement('div');
 gameContainer.appendChild(buttonContainer);
 
 const button = document.createElement('button');
+button.id = 'guessButton';
 button.textContent = 'Guess';
 button.addEventListener('click', submitGuess);
 buttonContainer.appendChild(button); // Add button to its container

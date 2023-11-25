@@ -41,6 +41,8 @@
     background-color: #f8f8f8;
     border-color: #8f8f8f; /* Dark red for a festive touch */
     box-sizing: border-box; /* Include padding and borders in the width */
+    text-transform: uppercase; /* Capitalize all letters */
+    font-weight: bold;         /* Make the text bold */
 }
 
 #mini_wordle .correct {
@@ -66,6 +68,7 @@
     margin-right: auto;
     display: block; /* To ensure it takes up the full width */
     box-sizing: border-box; /* Include padding and borders in the width */
+    text-transform: uppercase; /* Capitalize all letters */
 }
 
 #mini_wordle button {
