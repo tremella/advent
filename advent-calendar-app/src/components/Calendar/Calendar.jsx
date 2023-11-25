@@ -14,9 +14,10 @@ const Calendar = ({ contentData }) => {
   const handleDayClick = day => {
     const dayData = contentData[day];
     setSelectedDay(day);
+    console.log('dayData', dayData);
 
     // Open modal only if the day's content is a JavascriptAnimation
-    if (dayData && dayData.type === 'javascript') {
+    if (dayData && dayData.type === 'javascript' || dayData.type === 'youtube') {
       setIsModalOpen(true);
     }
   };
@@ -31,6 +32,7 @@ const Calendar = ({ contentData }) => {
 
     switch(dayData.type) {
       case 'youtube':
+        console.log(dayData)
         return <YoutubeContent data={dayData} />;
       case 'javascript':
         return <JavascriptAnimation data={dayData} />;
@@ -42,17 +44,26 @@ const Calendar = ({ contentData }) => {
 
   return (
     <div className="calendar">
+      {/* renders content in square */}
       {Array.from({ length: 24 }, (_, i) => i + 1).map(day => (
         <div key={`day-${day}`} className="calendar-day" onClick={() => handleDayClick(day)}>
           <div className="day-number">{day}</div>
-          {selectedDay === day && contentData[selectedDay] && contentData[selectedDay].type !== 'javascript' && (
+
+          {/* // for now, we render nothing in the squares // */}
+
+          {/* for each item in the calendar, if its day is the same as the selected day, and the contentType isn't JS, render content */}
+          {/* {selectedDay === day && contentData[selectedDay] 
+          && (contentData[selectedDay].type !== 'javascript' ) && (
             <div className="content-container">
               {renderContent(selectedDay)}
             </div>
-          )}
+          )} */}
         </div>
       ))}
-      {selectedDay !== null && contentData[selectedDay] && contentData[selectedDay].type === 'javascript' && (
+      {/* renders content in modal */}
+      {selectedDay !== null && contentData[selectedDay] 
+      // && contentData[selectedDay].type === 'javascript' 
+      && (
         <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
