@@ -45,10 +45,10 @@ const Calendar = ({ contentData }) => {
     const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
     const isViewed = viewedDays[day];
   
-    const tileStyle = isViewed ? { backgroundColor: 'lightgreen' } : {}; // Change color if viewed
+    const viewClass = isViewed ? "viewed" : null; // Change color if viewed
   
     return (
-      <div className="calendar-day" style={tileStyle} onClick={() => handleDayClick(day)}>
+      <div className={`calendar-day ${viewClass}`} onClick={() => handleDayClick(day)}>
         <div className="day-number">{day}</div>
       </div>
     );

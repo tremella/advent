@@ -14,7 +14,12 @@
     box-shadow: 10px 10px red;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* overflow: hidden; Added to handle content overflow */
+    overflow: hidden; /* Added to handle content overflow */
+    
+  }
+
+  .calendar-day.viewed {
+    background-color: rgb(77, 183, 60);
   }
  
   .calendar-day::before {
