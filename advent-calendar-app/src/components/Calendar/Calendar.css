@@ -1,33 +1,91 @@
 .calendar {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust min size for larger squares */
-    gap: 15px;
+    gap: 40px 20px;
     padding: 20px;
   }
   
   .calendar-day {
     position: relative; /* Needed for absolute positioning inside the cell */
-    background-image: url("/present.png");
-    background-size: contain;
-    background-repeat: no-repeat;
     color: #fff;
-    box-shadow: 10px 10px red;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    overflow: hidden; /* Added to handle content overflow */
-    
+    --shadow-color: brown;
+    box-shadow: 
+    1px 0px 0px -1px var(--shadow-color),0px 1px 0px -1px var(--shadow-color),
+    2px 1px 0px -1px var(--shadow-color),1px 2px 0px -1px var(--shadow-color),
+    3px 2px 0px -1px var(--shadow-color),2px 3px 0px -1px var(--shadow-color),
+    4px 3px 0px -1px var(--shadow-color),3px 4px 0px -1px var(--shadow-color),
+    5px 4px 0px -1px var(--shadow-color),4px 5px 0px -1px var(--shadow-color),
+    6px 5px 0px -1px var(--shadow-color),5px 6px 0px -1px var(--shadow-color),
+    7px 6px 0px -1px var(--shadow-color),6px 7px 0px -1px var(--shadow-color),
+    8px 7px 0px -1px var(--shadow-color),7px 8px 0px -1px var(--shadow-color),
+    /* side outline */
+    1px 0px 0px black,0px 1px 0px black,
+    2px 1px 0px black,1px 2px 0px black,
+    3px 2px 0px black,2px 3px 0px black,
+    4px 3px 0px black,3px 4px 0px black,
+    5px 4px 0px black,4px 5px 0px black,
+    6px 5px 0px black,5px 6px 0px black,
+    7px 6px 0px black,6px 7px 0px black,
+    8px 7px 0px black,7px 8px 0px black,
+    /* bottom outline */
+    9px 8px 0px black,8px 9px 0px black;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: 100px;
+  }
+
+  .calendar-day.future{
+    background-color: #FF4F38;
+  }
+
+  .calendar-day.past{
+    --shadow-color: #a854a4;
+    background-color: #f2a2ee;
+  }
+
+  .calendar-day.current{
+    --shadow-color: rgb(59, 125, 79);
+    background-color: rgb(93, 189, 122);
+  }
+  /* On hover, shake present */
+.calendar-day.future.active{
+  animation: shake 0.5s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+/* rotate back and forwards smoothly */
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(2deg); }
+  40% { transform: rotate(-2deg); }
+  60% { transform: rotate(2deg); }
+  80% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* On click, depress */
+.calendar-day.opened.active{
+  transition: transform 0.1s ease-in-out;
+  transform: translate(4px, 4px);
+}
+
+  .calendar-day img {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* height: 100%;  */
+    position: absolute;
+    bottom: 0;
   }
 
   .calendar-day.viewed {
-    background-color: rgb(77, 183, 60);
   }
  
-  .calendar-day::before {
-    content: '';
-    display: block;
-    padding-top: 100%; /* Aspect ratio 1:1, makes the cell square */
-  }
-  
+
   .content-container {
     position: absolute;
     top: 0;
@@ -37,10 +95,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .calendar-day:hover {
-    background-color: rgb(15, 101, 2);
   }
   
   /* Style for the day number */

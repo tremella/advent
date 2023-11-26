@@ -17,8 +17,8 @@ const Calendar = ({ contentData }) => {
     // change this to december when it happens. Until then, we test in november. 
     const startDate = new Date(2023, 10, 1); // November is 10 because months are zero-indexed
     
-    const currentDate = new Date();
-    // const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
+    // const currentDate = new Date();
+    const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
 
     
     if (day <= currentDate.getDate() && currentDate >= startDate) {
@@ -32,9 +32,9 @@ const Calendar = ({ contentData }) => {
 
   const handleDayClick = day => {
     const dayData = contentData[day];
-    setSelectedDay(day);    
+    setSelectedDay(day);
     if (isDateValid(day)) {      
-      setIsModalOpen(true);    
+      setIsModalOpen(true);
       const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
       viewedDays[day] = true; // Mark the day as viewed
       localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
@@ -42,13 +42,23 @@ const Calendar = ({ contentData }) => {
   };
 
   const DayTile = ({ day }) => {
+    const [isActive, setIsActive] = useState(false);
     const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
     const isViewed = viewedDays[day];
-  
+    const handleDayClickLocal = event => {
+      setIsActive(true);
+      // handleDayClick(day);
+      // wait 1 second
+      setTimeout(() => {
+        handleDayClick(day);
+      }, 500);
+    };
+
     const viewClass = isViewed ? "viewed" : null; // Change color if viewed
   
     return (
-      <div className={`calendar-day ${viewClass}`} onClick={() => handleDayClick(day)}>
+      <div role="button" className={`calendar-day past ${viewClass} ${isActive ? "active": ""}`} onClick={() => handleDayClickLocal(day)}>
+        <img className="present" src="/present.png" alt="" />
         <div className="day-number">{day}</div>
       </div>
     );
