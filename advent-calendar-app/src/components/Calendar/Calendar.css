@@ -8,9 +8,10 @@
   .calendar-day {
     position: relative; /* Needed for absolute positioning inside the cell */
     background-image: url("/present.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     color: #fff;
-    box-shadow: 3px 3px green;
+    box-shadow: 10px 10px red;
     cursor: pointer;
     transition: background-color 0.3s ease;
     /* overflow: hidden; Added to handle content overflow */
