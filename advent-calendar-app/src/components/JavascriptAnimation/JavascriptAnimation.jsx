@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
 const JavascriptAnimation = ({ data }) => {    
+
+  // Ref to the container for the animation
   const animationRef = useRef(null);  
+
+  // Ref to track if the target div and script are loaded
   let targetDivAndScriptLoaded = useRef(false);
+
   useEffect(() => {
     if (data.folder_location) {        
         if (!targetDivAndScriptLoaded.current) {            
@@ -13,6 +18,7 @@ const JavascriptAnimation = ({ data }) => {
 
             import(`../../data/${data.folder_location}/style.css`)
             .then(() => {
+
             // CSS is loaded, now you can load the script
             const script = document.createElement('script');
             script.src = `/src/data/${data.folder_location}/script.js`;

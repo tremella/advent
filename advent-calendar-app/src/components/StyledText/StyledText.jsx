@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
 const StyledText = ({ data }) => {    
-    const [content, setContent] = useState([]);        
+
+    // content variable for later use, and setContent function to update it
+    const [content, setContent] = useState([]);    
+
+    // useEffect hook updates content with imported data
     useEffect(() => {
         if (data) {
+        // imports the data we're displaying 
         import(`../../data/${data.folder_location}/style.css`).then(() =>
         import(`../../data/${data.folder_location}/index.json`)
-            .then((data) => {                
-            setContent(data.default.content);            
+            .then((jsonData) => {              
+              
+            // updates content variable with the content from the json file
+            setContent(jsonData.default.content);            
             })
             .catch((error) => {
             console.error('Error loading content:', error);
