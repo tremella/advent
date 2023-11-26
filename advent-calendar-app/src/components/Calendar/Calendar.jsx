@@ -34,8 +34,24 @@ const Calendar = ({ contentData }) => {
     const dayData = contentData[day];
     setSelectedDay(day);    
     if (isDateValid(day)) {      
-      setIsModalOpen(true);
+      setIsModalOpen(true);    
+      const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
+      viewedDays[day] = true; // Mark the day as viewed
+      localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
     }
+  };
+
+  const DayTile = ({ day }) => {
+    const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
+    const isViewed = viewedDays[day];
+  
+    const tileStyle = isViewed ? { backgroundColor: 'lightgreen' } : {}; // Change color if viewed
+  
+    return (
+      <div className="calendar-day" style={tileStyle} onClick={() => handleDayClick(day)}>
+        <div className="day-number">{day}</div>
+      </div>
+    );
   };
 
   const closeModal = () => {
@@ -60,20 +76,8 @@ const Calendar = ({ contentData }) => {
   return (
     <div className="calendar">
       {/* renders content in square */}
-      {Array.from({ length: 24 }, (_, i) => i + 1).map(day => (
-        <div key={`day-${day}`} className="calendar-day" onClick={() => handleDayClick(day)}>
-          <div className="day-number">{day}</div>
-
-          {/* // for now, we render nothing in the squares // */}
-
-          {/* for each item in the calendar, if its day is the same as the selected day, and the contentType isn't JS, render content */}
-          {/* {selectedDay === day && contentData[selectedDay] 
-          && (contentData[selectedDay].type !== 'javascript' ) && (
-            <div className="content-container">
-              {renderContent(selectedDay)}
-            </div>
-          )} */}
-        </div>
+      {Array.from({ length: 24 }, (_, i) => (
+        <DayTile key={`day-${i + 1}`} day={i + 1} />
       ))}
       {/* renders content in modal */}
       {selectedDay !== null && contentData[selectedDay] 
