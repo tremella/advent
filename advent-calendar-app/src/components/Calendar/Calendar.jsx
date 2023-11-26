@@ -3,6 +3,7 @@ import './Calendar.css';
 import Modal from 'react-modal';
 import YoutubeContent from '../YoutubeContent/YoutubeContent';
 import JavascriptAnimation from '../JavascriptAnimation/JavascriptAnimation';
+import StyledText from '../StyledText/StyledText';
 // ... import other content type components as needed
 
 Modal.setAppElement('#root'); // Set a root app element for accessibility
@@ -11,14 +12,46 @@ const Calendar = ({ contentData }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const isDateValid = day => {
+
+    // change this to december when it happens. Until then, we test in november. 
+    const startDate = new Date(2023, 10, 1); // November is 10 because months are zero-indexed
+    
+    const currentDate = new Date();
+    // const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
+
+    
+    if (day <= currentDate.getDate() && currentDate >= startDate) {
+      return true;
+    } else {
+      // You can handle the error case here, e.g., log an error message or play an error noise
+      console.error('Invalid date selected.');
+      return false;
+    }
+  };
+
   const handleDayClick = day => {
     const dayData = contentData[day];
-    setSelectedDay(day);
-
-    // Open modal only if the day's content is a JavascriptAnimation
-    if (dayData && dayData.type === 'javascript') {
-      setIsModalOpen(true);
+    setSelectedDay(day);    
+    if (isDateValid(day)) {      
+      setIsModalOpen(true);    
+      const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
+      viewedDays[day] = true; // Mark the day as viewed
+      localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
     }
+  };
+
+  const DayTile = ({ day }) => {
+    const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
+    const isViewed = viewedDays[day];
+  
+    const tileStyle = isViewed ? { backgroundColor: 'lightgreen' } : {}; // Change color if viewed
+  
+    return (
+      <div className="calendar-day" style={tileStyle} onClick={() => handleDayClick(day)}>
+        <div className="day-number">{day}</div>
+      </div>
+    );
   };
 
   const closeModal = () => {
@@ -33,7 +66,8 @@ const Calendar = ({ contentData }) => {
         return <YoutubeContent data={dayData} />;
       case 'javascript':
         return <JavascriptAnimation data={dayData} />;
-      // ... other content types
+      case 'text':
+          return <StyledText data={dayData} />;
       default:
         return null;
     }
@@ -41,30 +75,33 @@ const Calendar = ({ contentData }) => {
 
   return (
     <div className="calendar">
-      {Array.from({ length: 24 }, (_, i) => i + 1).map(day => (
-        <div key={`day-${day}`} className="calendar-day" onClick={() => handleDayClick(day)}>
-          <div className="day-number">{day}</div>
-          {selectedDay === day && contentData[selectedDay] && contentData[selectedDay].type !== 'javascript' && (
-            <div className="content-container">
-              {renderContent(selectedDay)}
-            </div>
-          )}
-        </div>
+      {/* renders content in square */}
+      {Array.from({ length: 24 }, (_, i) => (
+        <DayTile key={`day-${i + 1}`} day={i + 1} />
       ))}
-      {selectedDay !== null && contentData[selectedDay] && contentData[selectedDay].type === 'javascript' && (
+      {/* renders content in modal */}
+      {selectedDay !== null && contentData[selectedDay] 
+      // && contentData[selectedDay].type === 'javascript' 
+      && (
         <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           style={{
             overlay: {
-              backgroundColor: 'rgba(0, 0, 0, 0.5)'
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
             },
             content: {
               backgroundColor: 'transparent',
-              border: 'none'          
+              border: 'none',
+              width: 'auto', // Adjust the width as needed
+              maxWidth: '600px',
+              height: 'auto', // Adjust the height as needed, or use 'auto' for content-based sizing
+              marginLeft: 'auto', // These two lines center the modal horizontally
+              marginRight: 'auto',
+              marginTop: '10%',
             }        
           }}
-          contentLabel="JavaScript Animation Modal"
+          contentLabel="Advent Content Modal"
         >
         <div className="modal-content">
         {selectedDay !== null && renderContent(selectedDay)}

@@ -1,11 +1,11 @@
 
 (function() {
 const container = document.getElementById('mini_wordle');
-const targetWord = "apple"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
+const targetWord = "yule"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
 const maxGuesses = 6;
+let num_letters = 4;
 let currentGuess = [];
 let guesses = 0;
-let validWords = ["apple", "hello", "world", "there", "about", "again", "heart", "pizza", "water", "happy", "sixty", "board", "month", "angel", "death", "green", "music", "fifty", "three", "party", "piano", "mouth", "woman", "sugar", "amber", "dream", "apple", "laugh", "tiger", "faith", "earth", "river", "money", "peace", "forty", "words", "smile", "abate", "house", "alone", "watch", "lemon", "south", "erica", "anime", "after", "santa"];
 
 function initGame() {
     const gameContainer = document.createElement('div');
@@ -15,7 +15,7 @@ function initGame() {
     gameContainer.appendChild(grid);
 
     for (let i = 0; i < maxGuesses; i++) {
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < num_letters; j++) {
             let cell = document.createElement('div');
             cell.id = `cell-${i}-${j}`;
             cell.classList.add('cell');
@@ -23,25 +23,40 @@ function initGame() {
         }
     }
 
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = 'guessInput';
-    input.maxLength = 5;
-    gameContainer.appendChild(input);
+// Container for the input
+const inputContainer = document.createElement("div");
+inputContainer.id = 'inputContainer';
+gameContainer.appendChild(inputContainer);
 
-    const button = document.createElement('button');
-    button.textContent = 'Guess';
-    button.addEventListener('click', submitGuess);
-    gameContainer.appendChild(button);
+const input = document.createElement('input');
+input.type = 'text';
+input.id = 'guessInput';
+input.maxLength = num_letters;
+input.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        document.getElementById('guessButton').click();
+    }
+});
+inputContainer.appendChild(input); // Add input to its container
 
-    container.appendChild(gameContainer); // Append the game container to the body
+// Container for the button
+const buttonContainer = document.createElement('div');
+gameContainer.appendChild(buttonContainer);
+
+const button = document.createElement('button');
+button.id = 'guessButton';
+button.textContent = 'Guess';
+button.addEventListener('click', submitGuess);
+buttonContainer.appendChild(button); // Add button to its container
+
+container.appendChild(gameContainer); // Append the game container to the 
 }
 
 
 function submitGuess() {
     let guess = document.getElementById("guessInput").value.toLowerCase();
-    if (guess.length !== 5) {
-        alert("Enter a 5-letter word");
+    if (guess.length !== num_letters) {
+        alert("Enter a 4-letter word");
         return;
     }
 
@@ -65,18 +80,44 @@ function submitGuess() {
 }
 
 function updateGrid(guess) {
-    for (let i = 0; i < 5; i++) {
+    let targetLetterCounts = {};
+
+    // First, count the letters in the target word
+    for (let i = 0; i < num_letters; i++) {
+        const letter = targetWord[i];
+        targetLetterCounts[letter] = (targetLetterCounts[letter] || 0) + 1;
+    }
+
+    // First pass: Mark correct guesses and update counts
+    for (let i = 0; i < num_letters; i++) {
         let cell = document.getElementById(`cell-${guesses}-${i}`);
         cell.textContent = guess[i];
 
         if (targetWord[i] === guess[i]) {
             cell.classList.add("correct");
-        } else if (targetWord.includes(guess[i])) {
-            cell.classList.add("present");
-        } else {
-            cell.classList.add("absent");
+            targetLetterCounts[guess[i]] -= 1;
+        }
+    }
+
+    // Second pass: Mark present guesses considering updated counts
+    for (let i = 0; i < num_letters; i++) {
+        let cell = document.getElementById(`cell-${guesses}-${i}`);
+        if (!cell.classList.contains("correct")) {
+            if (targetWord.includes(guess[i]) && targetLetterCounts[guess[i]] > 0) {
+                cell.classList.add("present");
+                targetLetterCounts[guess[i]] -= 1;
+            } else {
+                cell.classList.add("absent");
+            }
         }
     }
 }
-initGame();
+let validWords = [];
+
+fetch('/src/data/mini_wordle/four_letter_words.txt')
+  .then(response => response.text())
+  .then(text => {
+    validWords = text.split('\n').map(word => word.trim());    
+    initGame(); // Initialize the game after loading the words
+  });
 })();

@@ -1,7 +1,7 @@
 
 (function() {
     const snowglobe = document.getElementById('snowglobe');
-    const numberOfSnowflakes = 100;
+    const numberOfSnowflakes = 80; // 1 snowflake == 1 div. Don't make 2000 lmao. 
     
     class Snowflake {
         constructor(element) {
@@ -9,19 +9,29 @@
             this.reset();
         }
     
+        // where each snowflake starts, how fast it falls, and how transparent it is.
         reset() {
             this.element.style.left = `${Math.random() * 100}%`;
             this.element.style.top = `-${Math.random() * 20}px`;
             this.element.style.opacity = Math.random();
             this.speed = Math.random() * 3 + 1;
         }
-    
+
         fall() {
-            this.element.style.top = `${parseFloat(this.element.style.top) + this.speed}px`;
-            if (parseFloat(this.element.style.top) > snowglobe.offsetHeight) {
-                this.reset();
+            const currentTop = parseFloat(this.element.style.top);
+            this.element.style.top = `${currentTop + this.speed}px`;
+          
+            // Calculate opacity based on the distance from the top
+            const distanceFromTop = snowglobe.offsetHeight - currentTop;
+            const opacity = Math.max(0, Math.min(1, distanceFromTop / snowglobe.offsetHeight));
+            this.element.style.opacity = opacity;
+          
+            // Reset when the snowflake is approximately 80% of the way down
+            const resetThreshold = snowglobe.offsetHeight * 0.8;
+            if (currentTop > resetThreshold) {
+              this.reset();
             }
-        }
+          }
     }
     
     function createSnowflake() {
