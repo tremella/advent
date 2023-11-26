@@ -59,6 +59,10 @@ const Calendar = ({ contentData }) => {
   };
 
   const renderContent = (day) => {
+
+    // this is where we feed in the data for a SPECIFIC day to our content components
+    // aka de-indexing 
+    
     const dayData = contentData[day];
     if (!dayData) return null;
     switch(dayData.type) {
