@@ -16,21 +16,15 @@ const JavascriptAnimation = ({ data }) => {
             animationRef.current.appendChild(targetDiv);
             targetDivAndScriptLoaded.current = true;
 
-            import(`/advent/src/data/${data.folder_location}/style.css`)
+            import(`../../data/${data.folder_location}/style.css`)
             .then(() => {
+            import(`../../data/${data.folder_location}/script.js`).then(()=> {            
 
-            // CSS is loaded, now you can load the script
-            const script = document.createElement('script');
-            script.src = `/advent/src/data/${data.folder_location}/script.js`;
-            script.async = true;
-            animationRef.current.appendChild(script);
-
-            return () => {
-                animationRef.current.removeChild(script);
+            return () => {                
                 animationRef.current.removeChild(targetDiv);
                 targetDivAndScriptLoaded.current = false;
             };
-            })
+            })})
             .catch(err => console.error('Error loading CSS:', err));
         }
     }
