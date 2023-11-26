@@ -15,10 +15,10 @@ const Calendar = ({ contentData }) => {
   const isDateValid = day => {
 
     // change this to december when it happens. Until then, we test in november. 
-    const startDate = new Date(2023, 10, 1); // November is 10 because months are zero-indexed
+    const startDate = new Date(2023, 11, 1); // November is 10 because months are zero-indexed
     
-    const currentDate = new Date();
-    // const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
+    // const currentDate = new Date();
+    const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
 
     
     if (day <= currentDate.getDate() && currentDate >= startDate) {
@@ -29,12 +29,23 @@ const Calendar = ({ contentData }) => {
       return false;
     }
   };
-
-  const handleDayClick = day => {
+  const getDateStatus = day => {
+    //const currentDate = new Date();
+    const currentDate = new Date(2023, 11, 6); // dummy date for testing purposes
+    if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
+      return "past";
+    } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
+      return "current";
+    } else {
+      return "future";
+    }
+  };
+  const handleDayClick = (day, status) => {
+    console.log(status, day)
     const dayData = contentData[day];
-    setSelectedDay(day);    
-    if (isDateValid(day)) {      
-      setIsModalOpen(true);    
+    setSelectedDay(day);
+    if ((status === "past" || status === "current") && dayData) {       
+      setIsModalOpen(true);
       const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
       viewedDays[day] = true; // Mark the day as viewed
       localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
@@ -42,13 +53,24 @@ const Calendar = ({ contentData }) => {
   };
 
   const DayTile = ({ day }) => {
+    const [isActive, setIsActive] = useState(false);
     const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
     const isViewed = viewedDays[day];
-  
-    const tileStyle = isViewed ? { backgroundColor: 'lightgreen' } : {}; // Change color if viewed
+    const status = getDateStatus(day);
+    const handleDayClickLocal = event => {
+      setIsActive(true);
+      // handleDayClick(day);
+      // wait 1 second
+      setTimeout(() => {
+        handleDayClick(day, status);
+      }, 500);
+    };
+
+    const viewClass = isViewed ? "viewed" : null; // Change color if viewed
   
     return (
-      <div className="calendar-day" style={tileStyle} onClick={() => handleDayClick(day)}>
+      <div role="button" className={`calendar-day ${viewClass} ${isActive ? "active": ""} ${status}`} onClick={() => handleDayClickLocal(day, status)}>
+        <img className="present" src="/present.png" alt="" />
         <div className="day-number">{day}</div>
       </div>
     );
