@@ -32,8 +32,7 @@ const Calendar = ({ contentData }) => {
 
   const handleDayClick = day => {
     const dayData = contentData[day];
-    setSelectedDay(day);
-    console.log('dayData', dayData);
+    setSelectedDay(day);    
     if (isDateValid(day)) {      
       setIsModalOpen(true);
     }
