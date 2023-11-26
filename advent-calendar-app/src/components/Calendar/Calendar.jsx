@@ -70,7 +70,7 @@ const Calendar = ({ contentData }) => {
   
     return (
       <div role="button" className={`calendar-day ${viewClass} ${isActive ? "active": ""} ${status}`} onClick={() => handleDayClickLocal(day, status)}>
-        <img className="present" src="/present.png" alt="" />
+        <img className="present" src="/advent/present.png" alt="" />
         <div className="day-number">{day}</div>
       </div>
     );

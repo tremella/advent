@@ -114,7 +114,7 @@ function updateGrid(guess) {
 }
 let validWords = [];
 
-fetch('/src/data/mini_wordle/four_letter_words.txt')
+fetch('/advent/src/data/mini_wordle/four_letter_words.txt')
   .then(response => response.text())
   .then(text => {
     validWords = text.split('\n').map(word => word.trim());    

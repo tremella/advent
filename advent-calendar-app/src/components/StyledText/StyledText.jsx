@@ -9,8 +9,8 @@ const StyledText = ({ data }) => {
     useEffect(() => {
         if (data) {
         // imports the data we're displaying 
-        import(`../../data/${data.folder_location}/style.css`).then(() =>
-        import(`../../data/${data.folder_location}/index.json`)
+        import(`/advent/src/data/${data.folder_location}/style.css`).then(() =>
+        import(`/advent/src/data/${data.folder_location}/index.json`)
             .then((jsonData) => {              
               
             // updates content variable with the content from the json file
