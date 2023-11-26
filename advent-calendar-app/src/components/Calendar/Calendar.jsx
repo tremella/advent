@@ -3,6 +3,7 @@ import './Calendar.css';
 import Modal from 'react-modal';
 import YoutubeContent from '../YoutubeContent/YoutubeContent';
 import JavascriptAnimation from '../JavascriptAnimation/JavascriptAnimation';
+import StyledText from '../StyledText/StyledText';
 // ... import other content type components as needed
 
 Modal.setAppElement('#root'); // Set a root app element for accessibility
@@ -33,15 +34,8 @@ const Calendar = ({ contentData }) => {
     const dayData = contentData[day];
     setSelectedDay(day);
     console.log('dayData', dayData);
-  
-    if (isDateValid(day)) {
-      // Open modal only if the day's content is a JavascriptAnimation or Youtube
-      if (dayData && (dayData.type === 'javascript' || dayData.type === 'youtube')) {
-        setIsModalOpen(true);
-      } else {
-        // Play error noise or show an error message
-        console.error('Invalid content for the selected day.');
-      }
+    if (isDateValid(day)) {      
+      setIsModalOpen(true);
     }
   };
 
@@ -54,11 +48,11 @@ const Calendar = ({ contentData }) => {
     if (!dayData) return null;
     switch(dayData.type) {
       case 'youtube':
-        console.log(dayData)
         return <YoutubeContent data={dayData} />;
       case 'javascript':
         return <JavascriptAnimation data={dayData} />;
-      // ... other content types
+      case 'text':
+          return <StyledText data={dayData} />;
       default:
         return null;
     }
@@ -91,14 +85,20 @@ const Calendar = ({ contentData }) => {
           onRequestClose={closeModal}
           style={{
             overlay: {
-              backgroundColor: 'rgba(0, 0, 0, 0.5)'
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
             },
             content: {
               backgroundColor: 'transparent',
-              border: 'none'          
+              border: 'none',
+              width: 'auto', // Adjust the width as needed
+              maxWidth: '600px',
+              height: 'auto', // Adjust the height as needed, or use 'auto' for content-based sizing
+              marginLeft: 'auto', // These two lines center the modal horizontally
+              marginRight: 'auto',
+              marginTop: '10%',
             }        
           }}
-          contentLabel="JavaScript Animation Modal"
+          contentLabel="Advent Content Modal"
         >
         <div className="modal-content">
         {selectedDay !== null && renderContent(selectedDay)}

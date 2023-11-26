@@ -46,17 +46,17 @@
 }
 
 #mini_wordle .correct {
-    background-color: #4caf50; /* Green color for correct letters */
+    background-color: #4caf50;
     color:white;
 }
 
 #mini_wordle .present {
-    background-color: #fae954; /* Yellow color for present but misplaced letters */
+    background-color: #fae954;
     color:white;
 }
 
 #mini_wordle .absent {
-    background-color: #f44336; /* Red color for absent letters */
+    background-color: #f44336;
     color:white;
 }
 

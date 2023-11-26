@@ -46,17 +46,19 @@
 
   .modal-content {
     position: relative;
+    width: auto;
     /* other styles for your modal content */
   }
   
   .modal-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    border: 2px solid #fff;
+    top: 5px;
+    right: 12px;
+    border: 1px solid #fff;
     background: transparent;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
+    color: #fb4141;
     /* additional styling to make it look like a close button */
   }
 

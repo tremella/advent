@@ -1,0 +1,72 @@
+.styled-text {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fefff0;
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Needed for absolute positioning of inner div */
+    padding: 20px; /* Spacing around the inner div */
+  }
+
+  .styled-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('image.png') no-repeat center center;
+    background-size: cover; /* or 'contain' depending on your needs */
+    opacity: 0.1; /* Adjust the value to make the image fainter or more visible */    
+  }
+  
+  .styled-text-inner {
+    max-width: 600px; /* Adjust based on your preference */
+    margin: 0 auto; /* Center the div */
+    background-color: #fefff0;
+    padding: 20px; /* Padding inside the inner div */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+  }
+  
+  .styled-text-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .styled-text-content {
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .styled-text h3 {
+    color: #8B0000; /* Dark red color for headings */
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-size: 1.4em; /* Larger font size for headings */
+  }
+  
+  .styled-text ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .styled-text li {
+    margin-bottom: 8px; /* Spacing between list items */
+    padding-left: 20px;
+    position: relative; /* Needed for custom list marker */
+  }
+  
+  .styled-text li:before {
+    content: "•"; /* Custom list marker */
+    color: #8B0000; /* Color of the marker */
+    font-size: 1.2em; /* Size of the marker */
+    position: absolute;
+    left: 0;
+  }
+  
+  .styled-text p {
+    line-height: 1.6; /* Improved readability for paragraphs */
+    margin-top: 0;
+    margin-bottom: 16px;
+  }

@@ -14,7 +14,11 @@ const contentData = {
     "4" : {"folder_location": null, 
             "type": "youtube", 
             "details": {"comment": "Wham! - Last Christmas", 
-            "url": "https://www.youtube.com/embed/E8gmARGvPlI?si=vR5inL4buJLCTwPu&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}}
+            "url": "https://www.youtube.com/embed/E8gmARGvPlI?si=vR5inL4buJLCTwPu&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}},
+    "5" : {"folder_location": "mulled_wine_recipe",
+            "type": "text",
+            "title": "A recipe for mulled wine",
+            "backgroundImage": "image.png"}
 };
 
 export default contentData;
