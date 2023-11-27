@@ -11,6 +11,7 @@ Modal.setAppElement('#root'); // Set a root app element for accessibility
 const Calendar = ({ contentData }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [uniqueKey, setUniqueKey] = useState(Date.now());
 
   const isDateValid = day => {
 
@@ -40,12 +41,18 @@ const Calendar = ({ contentData }) => {
       return "future";
     }
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setUniqueKey(Date.now()); // Update the key to a current timestamp
+  };
+
   const handleDayClick = (day, status) => {
     console.log(status, day)
     const dayData = contentData[day];
     setSelectedDay(day);
     if ((status === "past" || status === "current") && dayData) {       
-      setIsModalOpen(true);
+      openModal();
       const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
       viewedDays[day] = true; // Mark the day as viewed
       localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
@@ -89,11 +96,11 @@ const Calendar = ({ contentData }) => {
     if (!dayData) return null;
     switch(dayData.type) {
       case 'youtube':
-        return <YoutubeContent data={dayData} />;
+        return <YoutubeContent key={uniqueKey} data={dayData} />;
       case 'javascript':
-        return <JavascriptAnimation data={dayData} />;
+        return  <JavascriptAnimation key={uniqueKey} data={contentData[selectedDay]} />
       case 'text':
-          return <StyledText data={dayData} />;
+          return <StyledText key={uniqueKey} data={dayData} />;
       default:
         return null;
     }

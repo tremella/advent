@@ -1,5 +1,5 @@
 
-(function() {
+export function run() {
     const snowglobe = document.getElementById('snowglobe');
     const numberOfSnowflakes = 80; // 1 snowflake == 1 div. Don't make 2000 lmao. 
     
@@ -53,4 +53,4 @@
     }
     
     updateSnowflakes();
-})();
+}

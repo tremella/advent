@@ -1,15 +1,19 @@
 
-(function() {
-const container = document.getElementById('mini_wordle');
-const targetWord = "yule"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
-const maxGuesses = 6;
-let num_letters = 4;
-let currentGuess = [];
-let guesses = 0;
+export function run() {
+
+    const container = document.getElementById('mini_wordle');
+    const targetWord = "yule"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
+    const maxGuesses = 6;
+    let num_letters = 4;
+    let currentGuess = [];
+    let guesses = 0;
 
 function initGame() {
     const gameContainer = document.createElement('div');
 
+    if (document.getElementById('grid')) {
+        return;
+    }
     const grid = document.createElement('div');
     grid.id = 'grid';
     gameContainer.appendChild(grid);
@@ -23,33 +27,33 @@ function initGame() {
         }
     }
 
-// Container for the input
-const inputContainer = document.createElement("div");
-inputContainer.id = 'inputContainer';
-gameContainer.appendChild(inputContainer);
+    // Container for the input
+    const inputContainer = document.createElement("div");
+    inputContainer.id = 'inputContainer';
+    gameContainer.appendChild(inputContainer);
 
-const input = document.createElement('input');
-input.type = 'text';
-input.id = 'guessInput';
-input.maxLength = num_letters;
-input.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        document.getElementById('guessButton').click();
-    }
-});
-inputContainer.appendChild(input); // Add input to its container
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'guessInput';
+    input.maxLength = num_letters;
+    input.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            document.getElementById('guessButton').click();
+        }
+    });
+    inputContainer.appendChild(input); // Add input to its container
 
-// Container for the button
-const buttonContainer = document.createElement('div');
-gameContainer.appendChild(buttonContainer);
+    // Container for the button
+    const buttonContainer = document.createElement('div');
+    gameContainer.appendChild(buttonContainer);
 
-const button = document.createElement('button');
-button.id = 'guessButton';
-button.textContent = 'Guess';
-button.addEventListener('click', submitGuess);
-buttonContainer.appendChild(button); // Add button to its container
+    const button = document.createElement('button');
+    button.id = 'guessButton';
+    button.textContent = 'Guess';
+    button.addEventListener('click', submitGuess);
+    buttonContainer.appendChild(button); // Add button to its container
 
-container.appendChild(gameContainer); // Append the game container to the 
+    container.appendChild(gameContainer); // Append the game container to the 
 }
 
 
@@ -120,4 +124,4 @@ fetch('/advent/src/data/mini_wordle/four_letter_words.txt')
     validWords = text.split('\n').map(word => word.trim());    
     initGame(); // Initialize the game after loading the words
   });
-})();
+}

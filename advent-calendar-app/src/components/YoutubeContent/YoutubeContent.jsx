@@ -12,7 +12,7 @@ const YoutubeContent = ({ data }) => {
     src={videoUrl} 
     title={videoTitle}
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowFullscreen
+    allowFullScreen
     >
     </iframe>
 
