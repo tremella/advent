@@ -59,24 +59,54 @@ const Calendar = ({ contentData }) => {
     }
   };
 
+  // const DayTile = ({ day }) => {
+  //   const [isActive, setIsActive] = useState(false);
+  //   const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
+  //   const isViewed = viewedDays[day];
+  //   const status = getDateStatus(day);
+  //   const handleDayClickLocal = event => {
+  //     setIsActive(true);
+  //     // handleDayClick(day);
+  //     // wait 1 second
+  //     setTimeout(() => {
+  //       handleDayClick(day, status);
+  //     }, 500);
+  //   };
+
+  //   const viewClass = isViewed ? "viewed" : null; // Change color if viewed
+  
+  //   return (
+  //     <div role="button" className={`calendar-day ${viewClass} ${isActive ? "active": ""} ${status}`} onClick={() => handleDayClickLocal(day, status)}>
+  //       <img className="present" src="/advent/present.png" alt="" />
+  //       <div className="day-number">{day}</div>
+  //     </div>
+  //   );
+    
+  // };
+
   const DayTile = ({ day }) => {
     const [isActive, setIsActive] = useState(false);
     const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
     const isViewed = viewedDays[day];
     const status = getDateStatus(day);
-    const handleDayClickLocal = event => {
+    const patternNumber = day % 24 + 1; // Calculate the pattern number based on the day
+  
+    const handleDayClickLocal = () => {
       setIsActive(true);
-      // handleDayClick(day);
-      // wait 1 second
       setTimeout(() => {
         handleDayClick(day, status);
       }, 500);
     };
-
-    const viewClass = isViewed ? "viewed" : null; // Change color if viewed
+  
+    const viewClass = isViewed ? "viewed" : null;
   
     return (
-      <div role="button" className={`calendar-day ${viewClass} ${isActive ? "active": ""} ${status}`} onClick={() => handleDayClickLocal(day, status)}>
+      <div
+        role="button"
+        className={`calendar-day ${viewClass} ${isActive ? "active" : ""} ${status}`}
+        onClick={handleDayClickLocal}
+        data-pattern={patternNumber}
+      >
         <img className="present" src="/advent/present.png" alt="" />
         <div className="day-number">{day}</div>
       </div>

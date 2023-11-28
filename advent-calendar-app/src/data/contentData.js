@@ -3,8 +3,8 @@
 const contentData = {
     "1" : {"folder_location": null, 
             "type": "youtube", 
-            "details": {"comment": "Mariah Carey ChatRoulette.", 
-            "url": "https://www.youtube.com/embed/InYvRyX2Fu4?si=DM37kW0XB7wzplp5&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}}, 
+            "details": {"comment": "ReindeerCam Live Stream", 
+            "url": "https://www.youtube.com/embed/_XiOnmBUhbs?si=qk7O3R5ORQMm1Kgs&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}}, 
     "2" : {"folder_location": "snowglobe",
             "type": "javascript",
             "target_div": "snowglobe"},
@@ -18,7 +18,12 @@ const contentData = {
     "5" : {"folder_location": "mulled_wine_recipe",
             "type": "text",
             "title": "A recipe for mulled wine",
-            "backgroundImage": "image.png"}
+            "backgroundImage": "image.png"},
+    "6" : {"folder_location": null, 
+            "type": "youtube", 
+            "details": {"comment": "Mariah Carey ChatRoulette.", 
+            "url": "https://www.youtube.com/embed/InYvRyX2Fu4?si=DM37kW0XB7wzplp5&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}},
 };
+
 
 export default contentData;
