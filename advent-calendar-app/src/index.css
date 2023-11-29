@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'lights';
-  src: local('lights'), url(./fonts/lights.otf) format('opentype');
+  font-family: 'hello';
+
+  src: local('hello'), url(./fonts/hello.ttf) format('truetype');
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
@@ -36,10 +37,11 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 5em;
+  color: rgb(25, 94, 29);
   line-height: 1.1;
   text-align: center;
-  font-family: 'lights', sans-serif; 
+  font-family: 'hello', sans-serif; 
 }
 
 button {

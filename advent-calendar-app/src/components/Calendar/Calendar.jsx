@@ -32,7 +32,7 @@ const Calendar = ({ contentData }) => {
   };
   const getDateStatus = day => {
     //const currentDate = new Date();
-    const currentDate = new Date(2023, 11, 6); // dummy date for testing purposes
+    const currentDate = new Date(2023, 11, 7); // dummy date for testing purposes
     if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
       return "past";
     } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
@@ -59,30 +59,6 @@ const Calendar = ({ contentData }) => {
     }
   };
 
-  // const DayTile = ({ day }) => {
-  //   const [isActive, setIsActive] = useState(false);
-  //   const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
-  //   const isViewed = viewedDays[day];
-  //   const status = getDateStatus(day);
-  //   const handleDayClickLocal = event => {
-  //     setIsActive(true);
-  //     // handleDayClick(day);
-  //     // wait 1 second
-  //     setTimeout(() => {
-  //       handleDayClick(day, status);
-  //     }, 500);
-  //   };
-
-  //   const viewClass = isViewed ? "viewed" : null; // Change color if viewed
-  
-  //   return (
-  //     <div role="button" className={`calendar-day ${viewClass} ${isActive ? "active": ""} ${status}`} onClick={() => handleDayClickLocal(day, status)}>
-  //       <img className="present" src="/advent/present.png" alt="" />
-  //       <div className="day-number">{day}</div>
-  //     </div>
-  //   );
-    
-  // };
 
   const DayTile = ({ day }) => {
     const [isActive, setIsActive] = useState(false);
@@ -137,16 +113,17 @@ const Calendar = ({ contentData }) => {
   };
 
   return (
-    <div className="calendar">
-      {/* renders content in square */}
-      {Array.from({ length: 24 }, (_, i) => (
-        <DayTile key={`day-${i + 1}`} day={i + 1} />
-      ))}
-      {/* renders content in modal */}
-      {selectedDay !== null && contentData[selectedDay] 
-      // && contentData[selectedDay].type === 'javascript' 
-      && (
-        <Modal
+    <div className="calendar-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <div className="calendar">
+        {/* renders content in square */}
+        {Array.from({ length: 24 }, (_, i) => (
+          <DayTile key={`day-${i + 1}`} day={i + 1} />
+        ))}
+        {/* renders content in modal */}
+        {selectedDay !== null && contentData[selectedDay] 
+        // && contentData[selectedDay].type === 'javascript' 
+        && (
+          <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           style={{
@@ -165,14 +142,15 @@ const Calendar = ({ contentData }) => {
             }        
           }}
           contentLabel="Advent Content Modal"
-        >
-        <div className="modal-content">
-        {selectedDay !== null && renderContent(selectedDay)}
-          <button className="modal-close" onClick={closeModal}>X</button>
+          >
+          <div className="modal-content">
+          {selectedDay !== null && renderContent(selectedDay)}
+            <button className="modal-close" onClick={closeModal}>X</button>
+          </div>
+          </Modal>
+        )}
         </div>
-         </Modal>
-      )}
-    </div>
+      </div>
   );
 };
 
