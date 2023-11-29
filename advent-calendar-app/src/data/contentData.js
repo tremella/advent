@@ -19,16 +19,20 @@ const contentData = {
                 "type": "youtube", 
                 "details": {"comment": "Wham! - Last Christmas", 
                 "url": "https://www.youtube.com/embed/E8gmARGvPlI?si=vR5inL4buJLCTwPu&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}},
-        "6" : {"folder_location": null, 
+        "6" : {"folder_location": "coal",
+                        "type": "javascript",
+                        "target_div": "coal"},
+        "7" : {"folder_location": null, 
                 "type": "youtube", 
                 "details": {"comment": "Mariah Carey ChatRoulette.", 
                 "url": "https://www.youtube.com/embed/InYvRyX2Fu4?si=DM37kW0XB7wzplp5&modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=1"}},
-        "7" : {"folder_location": "coal",
-                "type": "javascript",
-                "target_div": "coal"},
-                // "8" : {"folder_location": "countdown",
+        // "8" : {"folder_location": "countdown",
                 //         "type": "javascript",
                 //         "target_div": "countdown"},
+        // "9" : {"folder_location": "jukebox",
+                //         "type": "javascript",
+                //         "target_div": "jukebox"},
+        
                 
 };
 

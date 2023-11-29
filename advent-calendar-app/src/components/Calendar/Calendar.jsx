@@ -48,7 +48,7 @@ const Calendar = ({ contentData }) => {
   };
 
   const handleDayClick = (day, status) => {
-    console.log(status, day)
+    // console.log(status, day)
     const dayData = contentData[day];
     setSelectedDay(day);
     if ((status === "past" || status === "current") && dayData) {       
