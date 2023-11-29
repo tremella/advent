@@ -40,7 +40,6 @@ html {
     position: relative; /* Needed for absolute positioning inside the cell */
     color: #ffffff;
     cursor: pointer;
-    /* --shadow-color: brown; */
     box-shadow: 
     1px 0px 0px -1px var(--shadow-color),0px 1px 0px -1px var(--shadow-color),
     2px 1px 0px -1px var(--shadow-color),1px 2px 0px -1px var(--shadow-color),
@@ -65,7 +64,7 @@ html {
     margin: 0;
     width: 100px;
     height: 100px;
-    background-image: var(--pattern-image);
+    background-image: var(--pattern-image); /*important*/
     background-size: 100%;
     border-radius: 3px;
   }
@@ -73,7 +72,9 @@ html {
   
   :root {
     --pattern-image: url('/patterns/pattern1.png'); /* Default pattern */
-    
+    .calendar-day[data-pattern="1"] {
+      --pattern-image: url('/patterns/pattern1.png');
+    }  
     .calendar-day[data-pattern="2"] {
       --pattern-image: url('/patterns/pattern2.png');
     }
@@ -156,7 +157,7 @@ html {
   .calendar-day.future{
     /* background-color: #FF4F38; */
     --shadow-color: #99000038;
-    background-image: url('/patterns/pattern22.png');
+    background-image: url('/patterns/pattern0.png');
   }
   
   .calendar-day.past{

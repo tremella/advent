@@ -65,7 +65,7 @@ const Calendar = ({ contentData }) => {
     const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
     const isViewed = viewedDays[day];
     const status = getDateStatus(day);
-    const patternNumber = day % 24 + 1; // Calculate the pattern number based on the day
+    const patternNumber = day % 24; // Calculate the pattern number based on the day
   
     const handleDayClickLocal = () => {
       setIsActive(true);
