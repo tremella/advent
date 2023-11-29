@@ -1,0 +1,10 @@
+#countdown{
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  font-size: large;
+  background-color: #751c1c75;
+  background-size: cover;
+  background-position: center;
+  position: relative; /* Needed for absolute positioning of inner div */
+  padding: 20px; /* Spacing around the inner div */
+}
