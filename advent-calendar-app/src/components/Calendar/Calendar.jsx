@@ -120,7 +120,7 @@ const Calendar = ({ contentData }) => {
               overflow: 'visible',
               border: 'none',
               width: 'max-content', // Adjust the width as needed
-              maxWidth: '600px',
+              maxWidth: '800px',
               height: 'auto', // Adjust the height as needed, or use 'auto' for content-based sizing
               marginLeft: 'auto', // These two lines center the modal horizontally
               marginRight: 'auto',
@@ -131,7 +131,7 @@ const Calendar = ({ contentData }) => {
           >
           <div className="modal-content">
           {selectedDay !== null && renderContent(selectedDay)}
-            <button className="modal-close" onClick={closeModal}>X</button>
+            <button className="modal-close" onClick={closeModal}></button>
           </div>
           </Modal>
         )}
