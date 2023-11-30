@@ -32,7 +32,7 @@ const Calendar = ({ contentData }) => {
   };
   const getDateStatus = day => {
     //const currentDate = new Date();
-    const currentDate = new Date(2023, 12, 1); // dummy date for testing purposes
+    const currentDate = new Date(2023, 11, 1); // dummy date for testing purposes
     if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
       return "past";
     } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
