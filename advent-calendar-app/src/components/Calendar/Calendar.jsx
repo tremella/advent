@@ -15,8 +15,8 @@ const Calendar = ({ contentData }) => {
 
 
   const getDateStatus = day => {
-    const currentDate = new Date();
-//    const currentDate = new Date(2023, 11, 11); // dummy date for testing purposes
+    //const currentDate = new Date();
+    const currentDate = new Date(2023, 11, 11); // dummy date for testing purposes
     if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
       return "past";
     } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
@@ -63,6 +63,7 @@ const Calendar = ({ contentData }) => {
     return (
       <div
         role="button"
+        tabindex = "0"
         className={`calendar-day ${viewClass} ${isActive ? "active" : ""} ${status}`}
         onClick={handleDayClickLocal}
         data-pattern={patternNumber}
