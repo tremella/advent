@@ -117,8 +117,9 @@ const Calendar = ({ contentData }) => {
             },
             content: {
               backgroundColor: 'transparent',
+              overflow: 'visible',
               border: 'none',
-              width: 'auto', // Adjust the width as needed
+              width: 'max-content', // Adjust the width as needed
               maxWidth: '600px',
               height: 'auto', // Adjust the height as needed, or use 'auto' for content-based sizing
               marginLeft: 'auto', // These two lines center the modal horizontally
