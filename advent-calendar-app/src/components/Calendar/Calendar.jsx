@@ -63,12 +63,13 @@ const Calendar = ({ contentData }) => {
     return (
       <div
         role="button"
-        tabindex = "0"
+        tabIndex = "0"
+        aria-disabled = {status == "future" ? true : false}
         className={`calendar-day ${viewClass} ${isActive ? "active" : ""} ${status}`}
         onClick={handleDayClickLocal}
         data-pattern={patternNumber}
       >
-        <img className="present" src="/advent/present.png" alt="" />
+        <img className="present" src="/advent/present.png" alt="christmas present" />
         <div className="day-number">{day}</div>
       </div>
     );
@@ -131,7 +132,7 @@ const Calendar = ({ contentData }) => {
           >
           <div className="modal-content">
           {selectedDay !== null && renderContent(selectedDay)}
-            <button className="modal-close" onClick={closeModal}></button>
+            <button aria-label="close modal" className="modal-close" onClick={closeModal}></button>
           </div>
           </Modal>
         )}
