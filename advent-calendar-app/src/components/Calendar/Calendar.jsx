@@ -13,26 +13,10 @@ const Calendar = ({ contentData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uniqueKey, setUniqueKey] = useState(Date.now());
 
-  const isDateValid = day => {
 
-    // change this to december when it happens. Until then, we test in november. 
-    const startDate = new Date(2023, 11, 1); // November is 10 because months are zero-indexed
-    
-    // const currentDate = new Date();
-    const currentDate = new Date(2023, 10, 3); // dummy date for testing purposes
-
-    
-    if (day <= currentDate.getDate() && currentDate >= startDate) {
-      return true;
-    } else {
-      // You can handle the error case here, e.g., log an error message or play an error noise
-      console.error('Invalid date selected.');
-      return false;
-    }
-  };
   const getDateStatus = day => {
-    //const currentDate = new Date();
-    const currentDate = new Date(2023, 11, 10); // dummy date for testing purposes
+    const currentDate = new Date();
+//    const currentDate = new Date(2023, 11, 11); // dummy date for testing purposes
     if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
       return "past";
     } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
