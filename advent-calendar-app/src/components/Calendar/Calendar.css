@@ -269,19 +269,25 @@ html {
   }
   
   .modal-close {
+    scale: 1;
     position: absolute;
-    top: 5px;
-    right: 12px;
-    border: 1px solid #ffffff80;
-    background: transparent;
+    top: 0px;
+    right: -40px;
+    border: none;
+    background-color: transparent;
+    background-image: url("/icon-simple.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fb4141;
-    /* border-radius: 50%; */
-    /* additional styling to make it look like a close button */
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 60px;
   }
-  
+  .modal-close:hover {
+    transition: scale 0.2s;
+    scale: 1.05;
+  }
   .youtube{
     width: 100%;
     height: 100%;

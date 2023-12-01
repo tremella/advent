@@ -15,6 +15,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90vw;
+    max-width: 400px;
 }
 
 /* grid containing cells */

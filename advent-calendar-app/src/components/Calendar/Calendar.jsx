@@ -63,6 +63,7 @@ const Calendar = ({ contentData }) => {
     return (
       <div
         role="button"
+        tabindex = "0"
         className={`calendar-day ${viewClass} ${isActive ? "active" : ""} ${status}`}
         onClick={handleDayClickLocal}
         data-pattern={patternNumber}
@@ -116,9 +117,10 @@ const Calendar = ({ contentData }) => {
             },
             content: {
               backgroundColor: 'transparent',
+              overflow: 'visible',
               border: 'none',
-              width: 'auto', // Adjust the width as needed
-              maxWidth: '600px',
+              width: 'max-content', // Adjust the width as needed
+              maxWidth: '800px',
               height: 'auto', // Adjust the height as needed, or use 'auto' for content-based sizing
               marginLeft: 'auto', // These two lines center the modal horizontally
               marginRight: 'auto',
@@ -129,7 +131,7 @@ const Calendar = ({ contentData }) => {
           >
           <div className="modal-content">
           {selectedDay !== null && renderContent(selectedDay)}
-            <button className="modal-close" onClick={closeModal}>X</button>
+            <button className="modal-close" onClick={closeModal}></button>
           </div>
           </Modal>
         )}
