@@ -41,7 +41,7 @@ export function run() {
     }
 
     function createEmber() {
-        const emberSize = Math.random() * 1.5 + 1;
+        const emberSize = Math.random() * 1.5 + 2;
         const emberElement = document.createElement('div');
         emberElement.style.position = 'absolute';
         emberElement.style.width = `${emberSize}px`;
