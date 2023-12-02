@@ -313,7 +313,8 @@ html {
     }
 
     .modal-close {
-      visibility: hidden;
+      /* visibility: hidden;
+      /// right now if I do this, it's across all components. We need a screen friendly way to alter this only for youtube stuff. */
     }
 
   }
