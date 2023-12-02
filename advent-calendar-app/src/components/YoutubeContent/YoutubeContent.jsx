@@ -6,17 +6,19 @@ const YoutubeContent = ({ data }) => {
   const videoUrl = data["details"]["url"]
   const videoTitle = data["details"]["comment"]
   
-  return (<div className="youtube">
+  return (
+  <div className="youtube-container">
+    <div className="youtube">
 
-    <iframe width="560" height="315" 
-    src={videoUrl} 
-    title={videoTitle}
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowFullScreen
-    >
-    </iframe>
-
-    </div>);
+      <iframe width="560" height="315" 
+      src={videoUrl} 
+      title={videoTitle}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowFullScreen
+      >
+      </iframe>
+    </div>
+  </div>);
 };
 
 export default YoutubeContent;
