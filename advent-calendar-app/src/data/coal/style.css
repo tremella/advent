@@ -1,7 +1,8 @@
 
+
 #coal {
-    width: 300px;
-    height: 300px;
+    width: 295px;
+    height: 295px;
     background: url('image.png') no-repeat center center;
     background-size: cover;
     border-radius: 50%;
@@ -9,4 +10,13 @@
     overflow: hidden;
     margin: 50px auto;
     /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); */
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 400px) {
+    #coal {
+        background-size: contain; /* Use 'contain' to ensure the entire image is visible */
+        width: 15em; /* Use 'em' units to scale the image with the font size */
+        height: 15em; /* Use 'em' units to scale the image with the font size */
+    }
 }

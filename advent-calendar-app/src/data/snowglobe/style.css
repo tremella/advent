@@ -12,7 +12,7 @@
 }
 
 /* Adjust for mobile screens */
-@media (max-width: 390px) {
+@media (max-width: 400px) {
     #snowglobe {
         background-size: contain; /* Use 'contain' to ensure the entire image is visible */
         width: 13em; /* Use 'em' units to scale the image with the font size */
