@@ -299,18 +299,28 @@ html {
   }
   
   @media (max-width: 685px) {
-    /* Apply these styles for screens up to 767px wide (typical mobile devices) */
+    /* Apply these styles for screens up to 685px wide */
     .youtube {  
       width: 80vw !important; /* Adjust the percentage as needed */
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+      /* border: blue solid 1px; */
+      /* background-color: red; */
     }
 
-    /* Use the adjacent sibling combinator (+) or general sibling combinator (~) */
+    /* hides the modal-close button WHEN youtube AND screen is small.*/
+    .youtube + .modal-close {
+      position:relative;
+      /* width: 1.2em; */
+      /* right: -1.8em; */
+      visibility: hidden;
+    }
 
+    /*this works well for all content types except youtube. Why?*/
     .modal-close {
-      /* visibility: hidden; */
+      position:absolute;
+      right: -1.8em;
     }
 
   }

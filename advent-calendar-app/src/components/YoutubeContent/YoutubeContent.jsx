@@ -7,7 +7,6 @@ const YoutubeContent = ({ data }) => {
   const videoTitle = data["details"]["comment"]
   
   return (
-  <div className="youtube-container">
     <div className="youtube">
 
       <iframe width="560" height="315" 
@@ -18,7 +17,7 @@ const YoutubeContent = ({ data }) => {
       >
       </iframe>
     </div>
-  </div>);
+  );
 };
 
 export default YoutubeContent;
