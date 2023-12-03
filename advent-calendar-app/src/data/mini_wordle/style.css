@@ -4,10 +4,38 @@
     --num-letters: 4;
 }
 
+@media (max-width: 600px) {
+    /* Adjust styles for screens up to 600px wide (typical mobile screens) */
+    :root {
+        --cell-width: 40px; /* Adjust the cell width for smaller screens */
+        --cell-gap: 3px;    /* Adjust the gap between cells for smaller screens */
+        --num-letters: 4;   /* Reduce the number of letters for smaller screens */
+    }
+
+    #mini_wordle {
+        width: 65vw !important; /* Adjust the modal width for smaller screens */
+        /* max-width: 200px !important; */
+    }
+    
+    #mini_wordle #grid {
+        width: 200px; /*Adjust the grid width for smaller screens */
+        gap: 2px;     /* Adjust the gap between cells for smaller screens */
+        /* align-content: center !important; */
+        margin-left: 2em !important;
+    }
+
+    #mini_wordle input[type="text"] {
+        width: calc((var(--cell-width) * var(--num-letters)) + (var(--cell-gap) * (var(--num-letters) - 1)));
+    }
+}
+
+
 /* modal container */
 #mini_wordle {
     background-color: #fefff0;
-    padding: 20px;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -15,13 +43,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90vw;
+    width: 80vw;
     max-width: 400px;
 }
 
 /* grid containing cells */
 #mini_wordle #grid {
-    width: 220px;
+    /* width: 220px; */
     display: grid;
     grid-template-columns: repeat(var(--num-letters), var(--cell-width));
     gap: var(--cell-gap);

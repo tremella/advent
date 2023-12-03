@@ -125,6 +125,7 @@ const Calendar = ({ contentData }) => {
               marginLeft: 'auto', // These two lines center the modal horizontally
               marginRight: 'auto',
               marginTop: '10%',
+              padding: '0',
             }        
           }}
           contentLabel="Advent Content Modal"
