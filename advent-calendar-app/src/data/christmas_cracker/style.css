@@ -1,47 +1,71 @@
 body { font-family: sans-serif; }
 
-/* this immediately surrounds the card. we should have it - it's a parent element. */
+@media (max-width: 400px) {
+
+  #scene {
+    width: 13em; /* Use 'em' units to scale the image with the font size */
+    height: 6em; /* Use 'em' units to scale the image with the font size */
+  }
+
+  .card__face {
+
+    font-size: 1.1rem !important;
+  }
+}
+
 .scene {
   display: inline-block;
-  width: 300px;
-  height: 160px;
-  border: 3px solid rgb(177, 0, 0);
+  width: 17em;
+  height: 8em;
+  /* border: 3px solid rgb(177, 0, 0); */
+  /* background-color: rgba(206, 31, 60, 0.281); */
   margin: 40px 0;
   perspective: 600px;
-  padding: 5px;
+  padding: 2px;
 }
 
 .card {
   position: relative;
-  width: 100%; /* 100% of parent element, .scene{}   */
+  width: 100%;
   height: 100%;
   cursor: pointer;
   transform-style: preserve-3d;
-  transform-origin: center right;
-  transition: transform 1s;
+  transform-origin: center center; /* Updated origin for both X and Y axes */
+  transition: transform 2.2s;
+  outline: 4px auto -webkit-focus-ring-color; /* Customized focus style */
+
 }
 
 .card.is-flipped {
-  transform: translateX(-100%) rotateY(-180deg);
+  transform: rotateX(180deg); /* Adjusted rotation for vertical flip */
 }
 
 .card__face {
   position: absolute;
   width: 100%;
   height: 100%;
-  line-height: 260px;
+  backface-visibility: hidden;
+  /* line-height: 260px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 40px;
-  backface-visibility: hidden;
+  font-size: 1.5rem;
 }
 
 .card__face--front {
   background: crimson;
+  overflow-wrap: break-word;
 }
 
 .card__face--back {
   background: rgb(161, 5, 36);
-  transform: rotateY(180deg);
+  transform: rotateX(-180deg); /* Adjusted rotation for vertical flip */
+  overflow-wrap: break-word;
+}
+
+p {
+  padding: 10px;
 }

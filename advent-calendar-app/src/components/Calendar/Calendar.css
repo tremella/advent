@@ -265,6 +265,7 @@ html {
   .modal-content {
     position: relative;
     width: auto;
+    /* background-color: red; */
     /* other styles for your modal content */
   }
   
@@ -288,13 +289,7 @@ html {
     transition: scale 0.2s;
     scale: 1.05;
   }
-  /* .youtube{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+
   .youtube {
     /* width: 100%;
     height: 100%; */
@@ -312,9 +307,10 @@ html {
       transform: translateX(-50%);
     }
 
+    /* Use the adjacent sibling combinator (+) or general sibling combinator (~) */
+
     .modal-close {
-      /* visibility: hidden;
-      /// right now if I do this, it's across all components. We need a screen friendly way to alter this only for youtube stuff. */
+      /* visibility: hidden; */
     }
 
   }

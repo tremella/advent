@@ -49,7 +49,7 @@ export function run() {
     
     function updateSnowflakes() {
         snowflakes.forEach(snowflake => snowflake.fall());
-        requestAnimationFrame(updateSnowflakes);
+        requestAnimationFrame(updateSnowflakes); // recursive. Ensures more snow.
     }
     
     updateSnowflakes();

@@ -21,7 +21,9 @@ const JavascriptAnimation = ({ data }) => {
       import(`../../data/${data.folder_location}/style.css`)
         .then(() => import(`../../data/${data.folder_location}/script.js`))
         .then((s) => {
-            s.run();
+            s.run({
+              details: data.details || null
+          });
           targetDivAndScriptLoaded.current = true;
         })
         .catch(err => console.error('Error loading resources:', err));
