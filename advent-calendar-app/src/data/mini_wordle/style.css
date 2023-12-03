@@ -128,3 +128,7 @@
     /* background-color: red; */
     /* padding: 10px; */
 }
+.titleAndRules {
+    overflow-wrap: break-word;
+    padding: 10px;
+}

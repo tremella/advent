@@ -11,6 +11,22 @@ export function run() {
 function initGame() {
     const gameContainer = document.createElement('div');
 
+    const titleAndRules = document.createElement('div');
+    // titleAndRules.classList.add('titleAndRules');
+
+    const title = document.createElement('h2');
+    const rules = document.createElement('p');
+    // const instructions = document.createElement('p');
+    
+    title.textContent = "Mini Wordle";
+    rules.textContent = "Guess the 4-letter word!";
+    // instructions.textContent = "A correct letter turns green. \n A correct letter in the wrong place turns yellow. \nAn incorrect letter turns red.";
+
+    gameContainer.appendChild(title);
+    gameContainer.appendChild(rules);
+    // titleAndRules.appendChild(instructions);
+    // gameContainer.appendChild(titleAndRules);
+
     if (document.getElementById('grid')) {
         return;
     }
