@@ -1,7 +1,21 @@
+
+@media (max-width: 880px) {
+  .styled-text {
+    width: 65vw !important; /* Adjust the percentage as needed */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 95%;
+  }
+
+}
+
 .styled-text {
-    font-family: 'Arial', sans-serif;
+  max-width: 500px;  
+  border:#8B0000 3px solid;
+  font-family: 'Arial', sans-serif;
     color: #333;
-    background-color: #fefff0;
+    background-color: #f8ecdae8;
     background-size: cover;
     background-position: center;
     position: relative; /* Needed for absolute positioning of inner div */
@@ -30,11 +44,12 @@
   
   .styled-text-title {
     font-size: 1.5em;
+    color:#8B0000;
     margin-bottom: 10px;
   }
   
   .styled-text-content {
-    line-height: 1.6;
+    line-height: 1.5;
     text-align: justify;
   }
 
@@ -70,3 +85,5 @@
     margin-top: 0;
     margin-bottom: 16px;
   }
+
+  
