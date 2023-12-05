@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Advent Calendar</h1>
+        <h1 className="main-header">Advent Calendar</h1>
       </header>
       <main>
         <Calendar contentData={contentData} />

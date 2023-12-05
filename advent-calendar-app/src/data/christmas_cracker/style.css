@@ -3,8 +3,8 @@ body { font-family: sans-serif; }
 @media (max-width: 400px) {
 
   #scene {
-    width: 13em; /* Use 'em' units to scale the image with the font size */
-    height: 6em; /* Use 'em' units to scale the image with the font size */
+    width: 14em; /* Use 'em' units to scale the image with the font size */
+    height: 7em; /* Use 'em' units to scale the image with the font size */
   }
 
   .card__face {
@@ -52,7 +52,7 @@ body { font-family: sans-serif; }
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .card__face--front {
