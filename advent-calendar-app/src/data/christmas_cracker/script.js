@@ -5,7 +5,6 @@ export function run({details}) {
     return;
   }
 
-  console.log('running christmas_cracker');
   const setupString = details.setup;
   const punchlineString = details.punchline;
     
