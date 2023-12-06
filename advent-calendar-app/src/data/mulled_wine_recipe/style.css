@@ -1,19 +1,16 @@
 
 @media (max-width: 880px) {
   .styled-text {
-    width: 65vw !important; /* Adjust the percentage as needed */
-    position: absolute;
-    left: 49%;
-    transform: translateX(-52%);
-    /* left: 50%;
-    transform: translateX(-50%); */
+    width: 70vw; /* Adjust width for small screens */
+    margin: 0 auto; /* Center the container */
     font-size: 90%;
-    /* word-wrap:break-word; */
-    /* overflow: scroll; */
     word-spacing: 0.05em;
+    overflow-y: auto; /* Allow vertical scrolling */
+    height: 75vh; /* Limit height to ensure scrollability */
+    padding: 20px; /* Add padding for internal spacing */
   }
-
 }
+
 
 .styled-text {
   max-width: 500px;  
