@@ -1,28 +1,30 @@
-body { font-family: sans-serif; }
+body {
+  font-family: sans-serif;
+}
 
 @media (max-width: 400px) {
-
   #scene {
-    width: 15em; /* Use 'em' units to scale the image with the font size */
-    height: 7em; /* Use 'em' units to scale the image with the font size */
-    /* transform: translateY(40%); */
+    width: 15em;
+    height: 7em;
+    transform: translateY(40%);
   }
 
   .card__face {
-
     font-size: 1.1rem !important;
+  }
+
+  .modal-close {
+    transform: translateY(50%);
   }
 }
 
 .scene {
-  /* display: inline-block; */
-  display: flex;
+  display: inline-block;
   width: 20em;
   height: 8em;
+  margin: 40px 0;
   perspective: 600px;
   padding: 2px;
-  margin-top: 18vh;
-
 }
 
 .card {
@@ -31,13 +33,13 @@ body { font-family: sans-serif; }
   height: 100%;
   cursor: pointer;
   transform-style: preserve-3d;
-  transform-origin: center center; /* Updated origin for both X and Y axes */
+  transform-origin: center center;
   transition: transform 2.2s;
-  outline: 4px auto -webkit-focus-ring-color; /* Customized focus style */
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .card.is-flipped {
-  transform: rotateX(180deg); /* Adjusted rotation for vertical flip */
+  transform: rotateY(180deg);
 }
 
 .card__face {
@@ -45,7 +47,6 @@ body { font-family: sans-serif; }
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  /* line-height: 260px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,13 +57,13 @@ body { font-family: sans-serif; }
 }
 
 .card__face--front {
-  background: crimson;
+  background: blue;
   overflow-wrap: break-word;
 }
 
 .card__face--back {
-  background: rgb(161, 5, 36);
-  transform: rotateX(-180deg); /* Adjusted rotation for vertical flip */
+  background: rgb(0, 0, 209);
+  transform: rotateY(-180deg);
   overflow-wrap: break-word;
 }
 

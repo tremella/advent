@@ -34,13 +34,25 @@ const contentData = {
         "9" : {"folder_location": "christmas_cracker",
                         "type": "javascript",
                         "details": {"setup": "What happens to elves when they're naughty? ",
-                                        "punchline": "Santa gives them the sack 🥁 "},
-                                "target_div": "scene"},
-        // "9" : {"folder_location": "jukebox",
-                //         "type": "javascript",
-                //         "target_div": "jukebox"},
+                                    "punchline": "Santa gives them the sack 🎅🥁 "},
+                                    "target_div": "scene"},
+        "12" : {"folder_location": "emoji_game",
+                        "type": "javascript",
+                        "details": {
+                                "welcome":"Welcome to the emoji game! 🎉",
+                                "instructions": "Guess the popular christmas song from the emojis shown! Click to reveal the answers.",
+                                "guess1": "what song is this? \n 🎅🏻👶",
+                                "answer1": "Santa Baby",
+                                "guess2": "...nice one! what about this? \n🪨🤴🔁🎄",
+                                "answer2": "Rocking Around the Christmas Tree",
+                                "guess3": "very good! this last one is tricky. ❄️🦷🦷⛄",
+                                "answer3": "Frosty the Snowman",
+                                "congrats": "congrats! 🎉🎉🎉",
+                        },
+                        "target_div": "scene"},
         
-                
+                        // 🎅👶 🤫🌃 🪨🤴🔁🎄 🧊🪚 👩‍👧💋🎅 🧞‍♂️👧🛎️🪨 ❄️🦷🦷⛄
+
 };
 
 export default contentData;
