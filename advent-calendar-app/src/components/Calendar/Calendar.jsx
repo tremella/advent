@@ -63,7 +63,7 @@ const Calendar = ({ contentData }) => {
     return (
       <div
         role="button"
-        tabindex = "0"
+        tabIndex = "0"
         className={`calendar-day ${viewClass} ${isActive ? "active" : ""} ${status}`}
         onClick={handleDayClickLocal}
         data-pattern={patternNumber}

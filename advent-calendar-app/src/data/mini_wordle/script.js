@@ -11,9 +11,6 @@ export function run() {
 function initGame() {
     const gameContainer = document.createElement('div');
 
-    const titleAndRules = document.createElement('div');
-    // titleAndRules.classList.add('titleAndRules');
-
     const title = document.createElement('h2');
     const rules = document.createElement('p');
     // const instructions = document.createElement('p');
