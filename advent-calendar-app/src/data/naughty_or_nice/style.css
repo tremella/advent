@@ -1,0 +1,71 @@
+#naughtyContainer {
+    /* Updated modal styling for Christmas theme */
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;  
+    margin-top: 18vh;  
+    padding: 20px;    
+    background-color: #9d6d6d;    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners */
+    background-image: url('path_to_your_snowflake_background_image'); /* Optional snowflake background */
+}
+
+#nameInput {
+    /* Updated input field styling */
+    margin-bottom: 1em;
+    margin-right: 1em;
+    padding: 8px;
+    border: 1px solid #007bff; /* Blue border */
+    border-radius: 4px;
+    width: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    background-color: #ffdddd; /* Soft red background */
+    color: #333; /* Darker text color for readability */
+}
+
+
+#naughtyContainer button {
+    /* Updated button styling */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745; /* Christmas green */
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+#naughtyContainer button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.Nice, .Naughty {
+    /* Updated text animation styling */
+    font-size: 24px;
+    animation: fadeIn 2s;
+    color: #ff0000; /* Christmas red for text */
+}
+
+.emoji {
+    /* Updated emoji styling */
+    position: absolute;
+    top: -25vh;
+    font-size: 3em;
+    opacity: 0;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        top: -25vh;
+        opacity: 0.5; /* Start with higher opacity */
+    }
+    50% {
+        opacity: 1; /* Reach full opacity sooner */
+    }
+    100% {
+        top: 100vh;
+        opacity: 1;
+    }
+}
