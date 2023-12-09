@@ -25,7 +25,7 @@ const StyledText = ({ data }) => {
     const formattedContent = content.join('');
 
     return (
-        <div className="styled-text">
+        <div id={data.target_div}>
             <h2 className="styled-text-title">{data.title}</h2>
             <div className="styled-text-content" dangerouslySetInnerHTML={{ __html: formattedContent }} />            
         </div>        
