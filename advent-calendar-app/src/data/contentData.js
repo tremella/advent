@@ -46,22 +46,8 @@ const contentData = {
                 "type": "javascript",
                 "target_div": "naughty"},
         "13" : {"folder_location": "emoji_game",
-                        "type": "javascript",
-                        "details": {
-                                "welcome":"Welcome to the emoji game! 🎉",
-                                "instructions": "Guess the popular christmas song from the emojis shown! Click to reveal the answers.",
-                                "guess1": "what song is this? \n 🎅🏻👶",
-                                "answer1": "Santa Baby",
-                                "guess2": "...nice one! what about this? \n🪨🤴🔁🎄",
-                                "answer2": "Rocking Around the Christmas Tree",
-                                "guess3": "very good! this last one is tricky. ❄️🦷🦷⛄",
-                                "answer3": "Frosty the Snowman",
-                                "congrats": "congrats! 🎉🎉🎉",
-                        },
-                        "target_div": "scene"},
-        
-                        // 🎅👶 🤫🌃 🪨🤴🔁🎄 🧊🪚 👩‍👧💋🎅 🧞‍♂️👧🛎️🪨 ❄️🦷🦷⛄
-
+                        "type": "javascript",                       
+                        "target_div": "emoji-game"},
 };
 
 export default contentData;

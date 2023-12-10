@@ -1,61 +1,98 @@
-export function run({ details }) {
-  // prevents double rendering
-  if (document.getElementsByClassName('card').length > 0) {
-    return;
+import Fuse from 'fuse.js';
+
+export function run() {  
+  const container = document.getElementById('emoji-game');
+  if (document.getElementById('emoji-game-container')) return;
+
+    // Emojis and corresponding song titles
+  const emojiSongs = [
+      { emojis: '🎅🏻👶', song: 'Santa Baby' },
+      { emojis: '🪨🤴🔁🎄', song: 'Rocking Around the Christmas Tree'},
+      { emojis: '❄️🦷🦷⛄', song: 'Frosty the Snowman' }
+  ];
+
+
+  const emojiContainer = document.createElement('div');
+  emojiContainer.id = 'emoji-game-container';
+
+  // Title and instruction
+  const title = document.createElement('h2');
+  title.textContent = 'Emoji / Song';
+  emojiContainer.appendChild(title);
+
+  const instruction = document.createElement('p');
+  instruction.textContent = 'Guess the popular Christmas song from the emojis shown!';
+  emojiContainer.appendChild(instruction);
+
+  function isApproximatelyCorrect(guess, answer) {
+    const options = {
+        includeScore: true,
+        threshold: 0.3, // Adjust threshold for fuzziness (0 is exact match, 1 is very fuzzy)
+    };
+
+    const fuse = new Fuse([answer], options);
+    const result = fuse.search(guess);    
+    const isGuessSubstantial = guess.length >= answer.length * 0.8; // Guess should be at least 80% of the answer
+
+    return result.length > 0 && result[0].item === answer && isGuessSubstantial;
   }
 
-  console.log('running emoji_game');
+  // Function to handle the submission of guesses
+  function handleSubmit() {
+    let score = 0;
 
-  const welcome = details.welcome;
-  const instructions = details.instructions;
-  const guess1 = details.guess1;
-  const answer1 = details.answer1;
-  
-  const guess2 = details.guess2;
-  const answer2 = details.answer2;
-  
-  const guess3 = details.guess3;
-  const answer3 = details.answer3;
-  
-  const congrats = details.congrats;
+    emojiSongs.forEach((item, index) => {
+        const guess = document.getElementById(`input-${index}`).value;
+        const correct = isApproximatelyCorrect(guess, item.song);
+        if (correct) {
+            score++;
+        }       
+    });
 
-  const scene = document.getElementById('scene');
-  scene.classList.add('scene');
-  scene.classList.add('scene--card');
+    // Update the score
+    const scoreDiv = document.getElementById('score');
+    scoreDiv.textContent = `Your Score: ${score}/${emojiSongs.length}`;
 
-  const card = document.createElement('div');
-  card.classList.add('card');
-  card.id = 'card';
-
-  const front = document.createElement('div');
-  front.classList.add('card__face');
-  front.classList.add('card__face--front');
-  front.innerHTML = guess1;
-
-  const back = document.createElement('div');
-  back.classList.add('card__face');
-  back.classList.add('card__face--back');
-  back.innerHTML = answer1;
-
-  card.appendChild(front);
-  card.appendChild(back);
-
-  let currentCard = 1;
-
-  card.addEventListener('click', function () {
-    currentCard++;
-    if (currentCard > 3) {
-      console.log(congrats);
-      return;
+    // Check if the score isn't 3/3
+    if (score !== emojiSongs.length) {
+        scoreDiv.textContent += ' - Keep guessing!';
     }
+  }
+  
 
-    front.innerHTML = details[`guess${currentCard}`];
-    back.innerHTML = details[`answer${currentCard}`];
+  // Create the game elements
+  emojiSongs.forEach((item, index) => {
+    const emojiInputContainer = document.createElement('div');
+    emojiInputContainer.classList.add('emoji-input-container');
 
-    // card.classList.toggle('is-flipped');
+    const emojiDiv = document.createElement('div');
+    emojiDiv.classList.add('emoji');
+    emojiDiv.textContent = item.emojis;
+    emojiInputContainer.appendChild(emojiDiv);
+
+    const inputField = document.createElement('input');
+    inputField.setAttribute('id', `input-${index}`);
+    inputField.setAttribute('type', 'text');
+    // Add an event listener for the Enter key
+    inputField.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+          event.preventDefault(); // Prevent the default action to stop form submission
+          handleSubmit(); // Call the same function used for the submit button
+      }
+    });
+    emojiInputContainer.appendChild(inputField);        
+
+    emojiContainer.appendChild(emojiInputContainer);
   });
 
-  scene.appendChild(card);
+  const submitButton = document.createElement('button');
+  submitButton.textContent = 'Submit Guesses';
+  submitButton.addEventListener('click', handleSubmit);
+  emojiContainer.appendChild(submitButton);
 
-  return scene;
+  const scoreDiv = document.createElement('div');
+  scoreDiv.setAttribute('id', 'score');
+  emojiContainer.appendChild(scoreDiv);
+
+  container.appendChild(emojiContainer);
 }
