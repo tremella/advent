@@ -1,10 +1,9 @@
 
-export function run() {
-
+export function run(data) {    
     const container = document.getElementById('mini_wordle');
-    const targetWord = "yule"; // For simplicity, a fixed word. This can be randomized or fetched from a list.
+    const targetWord = data.details.target_word;
     const maxGuesses = 6;
-    let num_letters = 4;
+    let num_letters = targetWord.length
     let currentGuess = [];
     let guesses = 0;
 
@@ -15,7 +14,7 @@ function initGame() {
     const rules = document.createElement('p');
     // const instructions = document.createElement('p');
     
-    title.textContent = "Mini Wordle";
+    title.textContent = data.details.title;
     rules.textContent = "Guess the 4-letter word!";
     // instructions.textContent = "A correct letter turns green. \n A correct letter in the wrong place turns yellow. \nAn incorrect letter turns red.";
 
