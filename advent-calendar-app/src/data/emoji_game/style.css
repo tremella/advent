@@ -1,4 +1,4 @@
-#emoji-game-container {
+#emoji-game {
   font-family: Arial, sans-serif;
   margin: 0 auto;
   width: 90%; /* Use a percentage of the viewport width */
@@ -8,6 +8,7 @@
   border-radius: 0.5em;
   background-color: #f9f9f9;
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  min-width: 0;
 }
 
 #emoji-game-container h2 {
@@ -63,58 +64,42 @@
   font-size: 1em;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 600px) {
-  #emoji-game-container {
-      width: 95%;
-      padding: 1.5em;
-  }
-
-  #emoji-game-container h2 {
-      font-size: 1.3em;
-  }
-
-  #emoji-game-container p {
-      font-size: 0.9em;
-  }
-  .emoji-input-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .emoji-input-container .emoji-icon {
-      margin-bottom: 0.5em;
-  }
-}
-
 .emoji-input-container {
   display: flex;
   align-items: center;
   margin-bottom: 1em;
 }
 
-.emoji-input-container .emoji-icon {
+.emoji-icon {
   width: 7em;
   text-align: center;
   margin-right: 1em;
   white-space: nowrap;
+  flex: 0 0 auto; /* Flex grow, shrink, and basis set to auto */
 }
 
-/* Responsive adjustments */
+#emoji-game-container input[type="text"] {
+  flex-grow: 1; /* Allows input fields to take up available space */
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 0.4em;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {
-  #emoji-game-container {
-      width: 90%; /* Increase width on smaller screens */
-      padding: 1em; /* Adjust padding if necessary */
+  #emoji-game {
+    width: 80%; /* Increase width for smaller screens */    
   }
 
   .emoji-input-container {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .emoji-input-container .emoji-icon {
-      width: auto;
-      margin-right: 0;
-      margin-bottom: 0.5em;
+  .emoji-icon {
+    margin-bottom: 0.5em;
+    margin-right: 0;
+    width: auto; /* Let emoji width be content-based */
   }
 }

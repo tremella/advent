@@ -274,6 +274,8 @@ html {
   .modal-content {
     position: relative;
     width: auto;
+    max-width: 100%; /* or other responsive settings */
+    box-sizing: border-box; /* Include padding and border */
     /* background-color: red; */
     /* other styles for your modal content */
   }
