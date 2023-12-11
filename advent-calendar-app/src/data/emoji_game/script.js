@@ -66,7 +66,7 @@ export function run() {
     emojiInputContainer.classList.add('emoji-input-container');
 
     const emojiDiv = document.createElement('div');
-    emojiDiv.classList.add('emoji');
+    emojiDiv.classList.add('emoji-icon');
     emojiDiv.textContent = item.emojis;
     emojiInputContainer.appendChild(emojiDiv);
 
