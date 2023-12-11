@@ -71,12 +71,16 @@ export function run() {
             // Randomize the position and animation delay
             emoji.style.left = Math.random() * 50 + 'vw';
             emoji.style.animationDelay = Math.random() * 2 + 's';
+
+            emoji.addEventListener('animationend', function() {
+                emoji.remove();
+            });
         }
     }
 
     function displayResult(result) {
         var resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<span class='" + result + "'>" + result + "</span>";
+        resultDiv.innerHTML = "<span class='" + result + "'>" +  "&lt;" + result + "&gt;" + "</span>";
         createEmojiShower(result === 'Nice');
     }
     input.focus();
