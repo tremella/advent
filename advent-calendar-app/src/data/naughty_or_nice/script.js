@@ -54,7 +54,7 @@ export function run() {
     function checkNaughtyOrNice() {
         var name = document.getElementById("nameInput").value.toLowerCase();
         var hash = hashCode(name);
-        var result = (hash % 2 === 0) ? "Nice" : "Naughty";
+        var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
         displayResult(result);
     }
 
