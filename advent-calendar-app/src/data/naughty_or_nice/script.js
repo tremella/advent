@@ -1,5 +1,6 @@
 export function run() {
     const niceEmojis = ['😊', '🌟', '🎁'];
+    const birthdayEmojis = ['🎉', '🎈', '🎁', '🎊'];
     const naughtyEmojis = ['😈', '🍪', '🙊'];
 
 
@@ -62,11 +63,23 @@ export function run() {
         var name = document.getElementById("nameInput").value.toLowerCase();
         var hash = hashCode(name);
         var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
+        if (name === "neena daswani") {
+            result = "Happy Birthday!!"
+        }
         displayResult(result);
     }
 
-    function createEmojiShower(isNice) {
-        const emojis = isNice ? niceEmojis : naughtyEmojis;
+    function createEmojiShower(emojiType) {
+        var emojis;
+        if (emojiType === "Naughty") {
+            emojis = naughtyEmojis;
+        }        
+        else if (emojiType.includes("Happy Birthday")) {
+            emojis = birthdayEmojis;
+        }
+        else {
+            emojis = niceEmojis;
+        }        
         const container = document.getElementById('naughty'); // or wherever you want to show the emojis
         const num_emojis = 50;
         for (let i = 0; i < num_emojis; i++) {
@@ -87,8 +100,15 @@ export function run() {
 
     function displayResult(result) {
         var resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<span class='" + result + "'>" +  "&lt;" + result + "&gt;" + "</span>";
-        createEmojiShower(result === 'Nice');
+        var resultClass;
+        if (result.includes("Happy") || result === "Nice"){
+            resultClass = "Nice";
+        }
+        else {
+            resultClass = "Naughty";
+        }
+        resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
+        createEmojiShower(result);
     }
     input.focus();
 }
