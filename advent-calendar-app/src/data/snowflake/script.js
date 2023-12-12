@@ -363,7 +363,7 @@ export function run(){
       isUnfolded = false;
       //cuts = [];
       snowflakeCanvas.clear();
-      flakePoints = [{x:0,y:0, ordinal:0}, {x:width/2.3,y:0, ordinal:500}, {x:width/2.3-1,y:height/4, ordinal:1000}]
+      flakePoints = [{x:0,y:0, ordinal:0}, {x:s.width/2.3,y:0, ordinal:500}, {x:s.width/2.3-1,y:s.height/4, ordinal:1000}]
       cutLines = []
     }
     
