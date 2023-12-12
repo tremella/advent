@@ -172,8 +172,8 @@ export function run(){
           //intersects = intersects.filter(intersect => !intersect.snap)
           let sortedIntersects = sortPointsByDistance(startPoint, intersects)
           //console.log(sortedIntersects)
-          startPointInside = isPointInPolygon(startPoint, flakePoints)
-          endPointInside = isPointInPolygon(endPoint, flakePoints)
+          let startPointInside = isPointInPolygon(startPoint, flakePoints)
+          let endPointInside = isPointInPolygon(endPoint, flakePoints)
           if(startPointInside){
             chopSection([sortedIntersects[1], sortedIntersects[2]])
           } else if (endPointInside){
