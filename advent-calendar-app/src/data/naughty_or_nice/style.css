@@ -61,6 +61,11 @@
 #naughtyContainer button:hover {
     background-color: #218838; /* Darker green on hover */
 }
+
+#naughtyContainer #result {
+    text-align: center !important;
+
+}
   
 .Nice {
     /* Updated text animation styling */

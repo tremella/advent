@@ -64,7 +64,7 @@ export function run() {
         var hash = hashCode(name);
         var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
         if (name === "neena daswani") {
-            result = "Happy Birthday!!"
+            result = `Happy Birthday!!`
         }
         displayResult(result);
     }
@@ -101,13 +101,18 @@ export function run() {
     function displayResult(result) {
         var resultDiv = document.getElementById("result");
         var resultClass;
-        if (result.includes("Happy") || result === "Nice"){
+        if (result === "Nice"){
             resultClass = "Nice";
+            resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
+        }
+        else if (result.includes("Happy")){
+            resultClass = "Nice";
+                resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + "Happy" + "&gt;" + "</span>" + "</br>" + "<span class='" + resultClass + "'>" +  "&lt;" + "Birthday!!" + "&gt;" + "</span>";
         }
         else {
             resultClass = "Naughty";
+            resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
         }
-        resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
         createEmojiShower(result);
     }
     input.focus();
