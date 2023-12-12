@@ -17,7 +17,7 @@ export function run() {
 
   // Title and instruction
   const title = document.createElement('h2');
-  title.textContent = 'Emoji / Song';
+  title.textContent = 'Emoji / Song guessing game';
   emojiContainer.appendChild(title);
 
   const instruction = document.createElement('p');
