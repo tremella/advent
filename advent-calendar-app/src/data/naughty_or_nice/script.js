@@ -1,7 +1,7 @@
 export function run() {
-    const niceEmojis = ['😊', '🌟', '🎁'];
+    const niceEmojis = ['😊', '🌟', '🎁', '👼'];
     const birthdayEmojis = ['🎉', '🎈', '🎁', '🎊'];
-    const naughtyEmojis = ['😈', '🍪', '🙊'];
+    const naughtyEmojis = ['😈', '🍪', '🙊', '💩'];
 
 
     
@@ -60,6 +60,10 @@ export function run() {
     }
 
     function checkNaughtyOrNice() {
+        // return if no value in input
+        if (!document.getElementById("nameInput").value) {
+            return;
+        }
         var name = document.getElementById("nameInput").value.toLowerCase();
         var hash = hashCode(name);
         var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
@@ -80,17 +84,25 @@ export function run() {
         else {
             emojis = niceEmojis;
         }        
+
+        // Create an overlay div
+        const overlay = document.getElementsByClassName('ReactModal__Overlay')[0];
+        // overlay.className = 'emoji-overlay';
+        // body.appendChild(overlay);
+
         const container = document.getElementById('naughty'); // or wherever you want to show the emojis
         const num_emojis = 50;
         for (let i = 0; i < num_emojis; i++) {
             let emoji = document.createElement('div');
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             emoji.className = 'emoji';
-            container.appendChild(emoji);
-    
-            // Randomize the position and animation delay
-            emoji.style.left = Math.random() * 50 + 'vw';
+            // container.appendChild(emoji);
+            // document.body.appendChild(emoji);
+            overlay.appendChild(emoji);
+
+            emoji.style.left = Math.random() * 100 + 'vw'; // Adjust based on your needs
             emoji.style.animationDelay = Math.random() * 2 + 's';
+            emoji.style.zIndex = 999;
 
             emoji.addEventListener('animationend', function() {
                 emoji.remove();
