@@ -61,6 +61,9 @@ const contentData = {
         "15" : {"folder_location": "emoji_game",
                         "type": "javascript",                       
                         "target_div": "emoji-game"},
+        "20" : {"folder_location": "snowflake",
+                        "type": "javascript",
+                        "target_div": "snowflake"},
 };
 
 export default contentData;
