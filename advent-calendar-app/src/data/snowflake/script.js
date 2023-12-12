@@ -16,7 +16,7 @@ export function run(){
         let isUnfolded = false;
         let currentCut = null;
         let flakePoints;
-        let windowWidth = 300;
+        let windowWidth = s.windowWidth / 2;
 
         s.setup = () => {
             s.createCanvas(windowWidth, windowWidth);
@@ -27,7 +27,7 @@ export function run(){
             unfoldButton.position(10, 10);
             unfoldButton.mousePressed(unfoldSnowflake);
             restartButton = s.createButton('Reset');
-            restartButton.position(10, 30);
+            restartButton.position(10, 50);
             restartButton.mousePressed(resetSnowflake);
             s.background(255);
         }
