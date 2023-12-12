@@ -4,14 +4,14 @@
 @media (max-width: 600px) {
 
   
-  .javascript-animation-container {
+  #emoji-game {
     width: 80vw;
-    margin: 0 auto; /* Center the container */
+    margin: 0 auto; 
     font-size: 90%;
     word-spacing: 0.05em;
-    overflow-y: auto; /* Allow vertical scrolling */
-    height: 75vh; /* Limit height to ensure scrollability */
-    padding: 20px; /* Add padding for internal spacing */
+    overflow-y: auto;
+    /* height: 75vh;  */
+    padding: 20px;
     transform: translatex(-5%) !important;
   }
   
@@ -23,9 +23,10 @@
   
 }
 
-@media (max-width: 400px) {
-  .javascript-animation-container {
-    /* width: 90vw; */
+@media (max-width: 500px) {
+  #emoji-game {
+    width: 75vw !important;
+    transform: translatex(0%) !important;
   }
 
   .emoji-input-container {

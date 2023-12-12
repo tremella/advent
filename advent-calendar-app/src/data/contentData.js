@@ -52,9 +52,7 @@ const contentData = {
         "13": {"folder_location": "naughty_or_nice",
                 "type": "javascript",
                 "target_div": "naughty"},
-        "14" : {"folder_location": "emoji_game",
-                        "type": "javascript",                       
-                        "target_div": "emoji-game"},
+
 };
 
 export default contentData;
