@@ -1,4 +1,4 @@
-import p5 from "p5";
+import {sketch} from 'p5js-wrapper';
 
 export function run() {
     const container = document.getElementById("snowflake");
