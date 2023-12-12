@@ -353,11 +353,6 @@ export function run(){
       isUnfolded = true;
     }
     
-    s.keyPressed = () => {
-      if (key === 'r' || key === 'R') {
-        resetSnowflake();
-      }
-    }
     
     function resetSnowflake() {
       isUnfolded = false;
