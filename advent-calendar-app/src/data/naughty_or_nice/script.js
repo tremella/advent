@@ -2,6 +2,8 @@ export function run() {
     const niceEmojis = ['😊', '🌟', '🎁'];
     const naughtyEmojis = ['😈', '🍪', '🙊'];
 
+
+    
     // Create Modal
     if (document.getElementById('naughtyContainer')) {
         return;
@@ -10,12 +12,16 @@ export function run() {
     var naughtyContainer = document.createElement('div');
     naughtyContainer.id = 'naughtyContainer';
 
+    // Create Header
+    var header = document.createElement('h2');
+    header.innerText = 'Naughty or Nice?';
+    
     // Create Input
     var input = document.createElement('input');
     input.type = 'text';
     input.id = 'nameInput';
     input.placeholder = 'Enter your name';
-
+    
     input.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent default action
@@ -27,12 +33,13 @@ export function run() {
     var button = document.createElement('button');
     button.innerText = 'Check';
     button.onclick = checkNaughtyOrNice;
-
+    
     // Create Result Display
     var resultDiv = document.createElement('div');
     resultDiv.id = 'result';
-
+    
     // Append elements to naughtyContainer
+    naughtyContainer.appendChild(header);
     naughtyContainer.appendChild(input);
     naughtyContainer.appendChild(button);
     naughtyContainer.appendChild(resultDiv);
