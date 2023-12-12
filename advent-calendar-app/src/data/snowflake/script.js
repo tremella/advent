@@ -17,14 +17,12 @@ export function run(){
         let currentCut = null;
         let flakePoints;
         let windowWidth = 300;
-        let width = 150;
-        let height = 150;
 
         s.setup = () => {
             s.createCanvas(windowWidth, windowWidth);
             snowflakeCanvas = s.createGraphics(200, 200);    
-            flakePoints = [{x:0,y:0, ordinal:0}, {x:width/2.3,y:0, ordinal:500}, {x:width/2.3-1,y:height/4, ordinal:1000}]
-            snowflakeCanvas.translate(width / 2, height / 2);
+            flakePoints = [{x:0,y:0, ordinal:0}, {x: s.width/2.3,y:0, ordinal:500}, {x: s.width/2.3-1,y: s.height/4, ordinal:1000}]
+            snowflakeCanvas.translate(s.width / 2, s.height / 2);
             unfoldButton = s.createButton('Unfold Snowflake');
             unfoldButton.position(10, 10);
             unfoldButton.mousePressed(unfoldSnowflake);
@@ -35,7 +33,7 @@ export function run(){
         }
     
     s.draw = () => {
-      s.translate(width/2, height/2)
+      s.translate(s.width/2, s.height/2)
       s.strokeWeight (1)
       s.stroke("#ddd5cb")
       s.background("#bc4749");
@@ -44,8 +42,8 @@ export function run(){
         drawFoldedSnowflake();
         if (currentCut) {
           //update end position
-          currentCut.endX = s.mouseX - width/2;
-          currentCut.endY = s.mouseY - height/2;
+          currentCut.endX = s.mouseX - s.width/2;
+          currentCut.endY = s.mouseY - s.height/2;
           // Draw a temporary line following the mouse
           let { startX, startY, endX, endY } = currentCut;
           s.line(startX, startY, endX, endY);
@@ -57,9 +55,9 @@ export function run(){
     }
     
     s.mousePressed = () => {
-      if (!isUnfolded && s.mouseX > 0 && s.mouseX < width && s.mouseY > 0 && s.mouseY < height) {
-        let startX = s.mouseX - width/2;
-        let startY = s.mouseY - height/2;
+      if (!isUnfolded && s.mouseX > 0 && s.mouseX < s.width && s.mouseY > 0 && s.mouseY < s.height) {
+        let startX = s.mouseX - s.width/2;
+        let startY = s.mouseY - s.height/2;
         currentCut = { startX, startY, endX: null, endY: null };
       }
     }
