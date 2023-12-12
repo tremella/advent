@@ -2,6 +2,8 @@
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {
+
+  
   .javascript-animation-container {
     width: 80vw;
     margin: 0 auto; /* Center the container */
@@ -12,15 +14,24 @@
     padding: 20px; /* Add padding for internal spacing */
     transform: translatex(-5%) !important;
   }
-
-
+  
+  #emoji-game-container h2 {
+    margin-top: -0.2em;
+    margin-bottom: -0.2em;
+  }
+  
+  
 }
 
 @media (max-width: 400px) {
+  .javascript-animation-container {
+    /* width: 90vw; */
+  }
+
   .emoji-input-container {
     display: block !important; 
     margin:auto;
-
+    
     .emoji-icon,
     input[type="text"] {
       margin: 0 auto; /* Center the elements horizontally */
@@ -50,7 +61,10 @@
 #emoji-game-container h2 {
   text-align: center;
   color: #333;
-  font-size: 1.5em;
+  font-size: 2em;
+  font-family: 'bluesky';
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
 }
 
 #emoji-game-container p {
@@ -96,9 +110,12 @@
 
 #emoji-game-container #score {
   margin-top: 1.1em;
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: bold;
   text-align: center;
+  font-family: 'bluesky';
+  color: #333;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.205);
 }
 
 #emoji-game-container #answers p {

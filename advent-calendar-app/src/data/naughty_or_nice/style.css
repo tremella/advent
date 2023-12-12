@@ -10,13 +10,13 @@
         margin-left: -15px;
     }
 }
-h2 {
+#naughtyContainer h2 {
     font-size: 2.3em;
     color: #ffffff;
     margin-bottom: 10px;
     margin-top: 0px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.722); /* Optional: Add a subtle text shadow */
-    font-family: 'bluesky' !important;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.722);
+    font-family: 'bluesky';
 }
   
 #naughtyContainer {
