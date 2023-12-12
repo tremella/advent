@@ -33,7 +33,7 @@
     display: block !important; 
     margin:auto;
     
-    .emoji-icon,
+    .emoji-song,
     input[type="text"] {
       margin: 0 auto; /* Center the elements horizontally */
     }
@@ -48,8 +48,8 @@
   padding: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 0.5em;
-  background-color: #f9f9f9;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  background-color: hsl(113, 69%, 65%);
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40' patternTransform='scale(1) rotate(50)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(113, 69%, 65%, 1)'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='hsla(187, 0%, 100%, 0.13)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
   min-width: 0;
 
 }
@@ -69,25 +69,26 @@
 }
 
 #emoji-game-container p {
-  color: #555;
+  color: #444;
   margin-left: 1em;
   margin-right: 1em;
   line-height: 1.5;
   font-size: 1em;
+  font-weight: bold;
   word-wrap: break-word !important;
 }
 
 
 #emoji-game-container input[type="text"] {
   width: 100%;
-  max-width: 260px;
+  /* max-width: 260px; */
   padding: 0.5em;
   margin-top: 0.3em;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 0.4em;
   box-sizing: border-box;
   font-size: 1em;
-
+  background-color: #fcf6e8;
   flex: 1;
 }
 
@@ -95,13 +96,14 @@
 #emoji-game-container button {
   width: 90%;
   padding: 0.6em;
-  background-color: #5cb85c;
+  background-color: #3db23d;
   color: white;
   border: none;
+  border: 2px solid #2d9613;
   border-radius: 0.4em;
   cursor: pointer;
   font-size: 1em;
-
+  margin-left: 1em;
   align-self: center;
 }
 
@@ -115,7 +117,7 @@
   font-weight: bold;
   text-align: center;
   font-family: 'bluesky';
-  color: #333;
+  color: #444;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.205);
 }
 
@@ -125,15 +127,16 @@
 }
 
 .emoji-input-container {
+  margin-left: 1em;
   width: 90%;
   display: flex;
   align-items: center;
   margin-bottom: 1em;
 }
 
-.emoji-icon {
+.emoji-song {
   width: 5.5em;
-  position: absolute;
+  /* position: absolute; */
   font-size: 1.5em;
   text-align: center;
   white-space: nowrap;
