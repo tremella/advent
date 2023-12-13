@@ -67,7 +67,7 @@ export function run() {
         var name = document.getElementById("nameInput").value.toLowerCase();
         var hash = hashCode(name);
         var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
-        if (name === "neena daswani") {
+        if (name === "neena daswani" || name === "neena" || name === "neena d") {
             result = `Happy Birthday!!`
         }
         displayResult(result);
