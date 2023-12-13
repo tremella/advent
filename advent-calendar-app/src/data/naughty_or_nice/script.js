@@ -64,7 +64,7 @@ export function run() {
         if (!document.getElementById("nameInput").value) {
             return;
         }
-        var name = document.getElementById("nameInput").value.toLowerCase();
+        var name = document.getElementById("nameInput").value.trim().toLowerCase();
         var hash = hashCode(name);
         var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
         if (name === "neena daswani" || name === "neena" || name === "neena d") {
