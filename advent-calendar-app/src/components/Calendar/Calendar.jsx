@@ -11,10 +11,14 @@ Modal.setAppElement('#root'); // Set a root app element for accessibility
 const Calendar = ({ contentData }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [uniqueKey, setUniqueKey] = useState(Date.now());
+  const [uniqueKey, setUniqueKey] = useState(Date.now());  
+  const [pageBackgroundImage, setPageBackgroundImage] = useState('url("/advent/backgrounds/main.svg")');
+  const [containerBgColor, setContainerBgColor] = useState('4caf4fd0'); // default color
+  const [backgroundToggled, setBackgroundToggled] = useState(false);
 
 
-  const updateH1Style = (color) => {    
+
+  const updateH1Color = (color) => {    
     const h1 = document.querySelector('.main-header');
     if (h1) {      
       h1.style.color = color;
@@ -38,14 +42,6 @@ const Calendar = ({ contentData }) => {
     setUniqueKey(Date.now()); // Update the key to a current timestamp
   };
 
-  const [pageBackgroundImage, setPageBackgroundImage] = useState('url("/advent/backgrounds/main.svg")');
-  const [containerBgColor, setContainerBgColor] = useState('4caf4fd0'); // default color
-
-
-  const updateBackgroundImage = (imageUrl) => {
-    setPageBackgroundImage(`url("${imageUrl}")`);
-  };
-
   useEffect(() => {
     document.documentElement.style.backgroundImage = pageBackgroundImage;
   }, [pageBackgroundImage]);
@@ -54,11 +50,19 @@ const Calendar = ({ contentData }) => {
     const dayData = contentData[day];
     setSelectedDay(day);
     if ((status === "past" || status === "current") && dayData) {       
-      if (dayData.type === "wallpaper_cursor") {        
-        updateBackgroundImage(dayData.backgroundImageUrl); // Update the background image based on the dayData
-        setContainerBgColor(dayData.backgroundColor || '4caf4fd0'); // Update container color
-        updateH1Style(dayData.h1Color);
-
+      if (dayData.type === "wallpaper_cursor") {
+        if (!backgroundToggled) {
+          setPageBackgroundImage(`url("${dayData.backgroundImageUrl}")`); // Update the background image based on the dayData
+          setContainerBgColor(dayData.backgroundColor || '#4caf4fd0'); // Update container color
+          updateH1Color(dayData.h1Color);
+          setBackgroundToggled(true);
+        }
+        else {
+          setPageBackgroundImage(`url("/advent/backgrounds/main.svg")`);
+          setContainerBgColor('#4caf4fd0');
+          updateH1Color('rgb(25, 94, 29)');
+          setBackgroundToggled(false);
+        }
       }
       else {
         openModal();
