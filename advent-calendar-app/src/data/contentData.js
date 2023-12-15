@@ -67,9 +67,18 @@ const contentData = {
                         "backgroundColor": "#02A6F2",
                         "h1Color": "#1B6C91",
                 },
+        "17" : {
+                "folder_location": "big_blue",
+                "type": "javascript",
+                "target_div": "big_blue",
+                "details": {"label": "Click Me!"}},                
         "20" : {"folder_location": "snowflake",
-                        "type": "javascript",
-                        "target_div": "snowflake"},
+                "type": "javascript",
+                "target_div": "snowflake"
+        },
 };
+
+                
+
 
 export default contentData;
