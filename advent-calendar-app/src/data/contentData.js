@@ -63,7 +63,7 @@ const contentData = {
                         "target_div": "emoji-game"},
         "16" : {"folder_location": "blue_wallpaper",
                         "type": "wallpaper_cursor",
-                        "backgroundImageUrl": "public/backgrounds/blue.svg",
+                        "backgroundImageUrl": "backgrounds/blue.svg",
                         "backgroundColor": "#02A6F2",
                         "h1Color": "#1B6C91",
                 },

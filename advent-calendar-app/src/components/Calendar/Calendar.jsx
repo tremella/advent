@@ -38,7 +38,7 @@ const Calendar = ({ contentData }) => {
     setUniqueKey(Date.now()); // Update the key to a current timestamp
   };
 
-  const [pageBackgroundImage, setPageBackgroundImage] = useState('url("/advent/public/backgrounds/main.svg")');
+  const [pageBackgroundImage, setPageBackgroundImage] = useState('url("/advent/backgrounds/main.svg")');
   const [containerBgColor, setContainerBgColor] = useState('4caf4fd0'); // default color
 
 
