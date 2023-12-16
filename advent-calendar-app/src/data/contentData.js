@@ -67,11 +67,13 @@ const contentData = {
                         "backgroundColor": "#5366D4",
                         "h1Color": "#09186F",
                 },
-        "17" : {
+        "17" : {},
+
+        "18" : {
                 "folder_location": "big_blue",
                 "type": "javascript",
                 "target_div": "big_blue",
-                "details": {"label": "Click Me!"}},                
+                },                
         "20" : {"folder_location": "snowflake",
                 "type": "javascript",
                 "target_div": "snowflake"
