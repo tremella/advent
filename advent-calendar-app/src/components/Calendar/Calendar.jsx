@@ -50,8 +50,8 @@ const Calendar = ({ contentData }) => {
 
   const handleDayClick = (day, status) => {    
     const dayData = contentData[day];
-    setSelectedDay(day);
     if ((status === "past" || status === "current") && dayData) {       
+      setSelectedDay(day);
       if (dayData.type === "wallpaper_cursor") {
         if (!backgroundToggled) {
           setPageBackgroundImage(`url("${dayData.backgroundImageUrl}")`); // Update the background image based on the dayData
