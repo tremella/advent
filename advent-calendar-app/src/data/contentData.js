@@ -67,8 +67,10 @@ const contentData = {
                         "backgroundColor": "#5366D4",
                         "h1Color": "#09186F",
                 },
-        "17" : {},
-
+                "17": {
+                        "folder_location": null,
+                        "type": "santa",
+                },
         "18" : {
                 "folder_location": "big_blue",
                 "type": "javascript",

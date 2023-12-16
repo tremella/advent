@@ -70,7 +70,7 @@ export function run() {
         if (name === "neena daswani" || name === "neena" || name === "neena d") {
             result = `Happy Birthday!!`
         }
-        if (name === "jonathan" || name === "jonno" || name === "jonathan brand") {
+        if (name === "jonathan" || name === "jonno") {
             result = "Nice"
         }
         displayResult(result);

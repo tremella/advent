@@ -26,9 +26,18 @@ html {
   .main-header {
     margin-bottom:auto;  
   }
-
-
 }
+
+/* CSS for SantaSleighCanvas component */
+.santaCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Adjust as needed to ensure it's above other elements */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+  }
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust min size for larger squares */
