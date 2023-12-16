@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import YoutubeContent from '../YoutubeContent/YoutubeContent';
 import JavascriptAnimation from '../JavascriptAnimation/JavascriptAnimation';
 import StyledText from '../StyledText/StyledText';
+import SantaSleighCanvas from '../SantaSleigh/SantaSleigh';
+
 // ... import other content type components as needed
 
 Modal.setAppElement('#root'); // Set a root app element for accessibility
@@ -63,6 +65,8 @@ const Calendar = ({ contentData }) => {
           updateH1Color('rgb(25, 94, 29)');
           setBackgroundToggled(false);
         }
+      } else if (dayData.type === "santa"){
+        setUniqueKey(Date.now());
       }
       else {
         openModal();
@@ -124,6 +128,8 @@ const Calendar = ({ contentData }) => {
           return <StyledText key={uniqueKey} data={dayData} />;
       case 'wallpaper_cursor':
         return null;          
+      case 'santa':        
+        return <SantaSleighCanvas key={uniqueKey} width={800} height={600} />
       default:
         return null;
     }
@@ -139,6 +145,7 @@ const Calendar = ({ contentData }) => {
         {/* renders content in modal */}
         {selectedDay !== null && contentData[selectedDay] 
         && contentData[selectedDay].type !== 'wallpaper_cursor' 
+        && contentData[selectedDay.type] !== 'santa'
         && (
           <Modal
           isOpen={isModalOpen}
@@ -168,9 +175,9 @@ const Calendar = ({ contentData }) => {
           </div>
           </Modal>
         )}
-         {/* Render alternative content for wallpaper_cursor type */}
+         {/* Render alternative content for santa type */}
          {selectedDay !== null && contentData[selectedDay] 
-        && contentData[selectedDay].type === 'wallpaper_cursor' 
+        && contentData[selectedDay].type === 'santa'
         && renderContent(selectedDay)}
         </div>
       </div>
