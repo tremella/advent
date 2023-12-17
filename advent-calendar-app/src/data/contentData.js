@@ -67,19 +67,41 @@ const contentData = {
                         "backgroundColor": "#5366D4",
                         "h1Color": "#09186F",
                 },
-                "17": {
-                        "folder_location": null,
-                        "type": "santa",
+        "17": {
+                "folder_location": null,
+                "type": "santa",
                 },
         "18" : {
                 "folder_location": "big_blue",
                 "type": "javascript",
                 "target_div": "big_blue",
-                },                
+                },               
+        "19" : {"folder_location": "christmas_cracker",
+                "type": "javascript",
+                "details": {"setup": "How does Christmas Day end? ",
+                            "punchline": `With the letter "Y" 🥁😏`},
+                            "target_div": "scene"},
         "20" : {"folder_location": "snowflake",
                 "type": "javascript",
                 "target_div": "snowflake"
-        },
+                },
+        "21" : {"folder_location": "NULL", // TODO
+                "type": "NULL",
+                "target_div": "NULL"
+                },
+        "22" : {"folder_location": "NULL", // TODO
+                "type": "NULL",
+                "target_div": "NULL"
+                },  
+        "23" : {"folder_location": "NULL", // TODO
+                "type": "NULL",
+                "target_div": "NULL"
+                },
+        "24" : {"folder_location": "NULL", // TODO
+                "type": "NULL",
+                "target_div": "NULL"
+                }
+
 };
 
                 
