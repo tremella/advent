@@ -1,16 +1,9 @@
 import Fuse from 'fuse.js';
 
-export function run() {  
+export function run(data) {  
   const container = document.getElementById('emoji-game');
-  if (document.getElementById('emoji-game-container')) return;
-
-    // Emojis and corresponding song titles
-  const emojiSongs = [
-      { emojis: '🎅🏻👶', song: 'Santa Baby' },
-      { emojis: '🪨🤴🔁🎄', song: 'Rocking Around the Christmas Tree'},
-      { emojis: '❄️🦷🦷⛄', song: 'Frosty the Snowman' }
-  ];
-
+  if (document.getElementById('emoji-game-container')) return;  
+  const emojiSongs = data.details.emojiSongs;
 
   const emojiContainer = document.createElement('div');
   emojiContainer.id = 'emoji-game-container';

@@ -59,8 +59,16 @@ const contentData = {
                 "url": "https://www.youtube.com/embed/lnk0SffeGOg?si=5LtQk8AZAir-1ji2&modestbranding=1&rel=0&showinfo=0&controls=0&mute=0&autoplay=1"}, 
         },
         "15" : {"folder_location": "emoji_game",
-                        "type": "javascript",                       
-                        "target_div": "emoji-game"},
+                "type": "javascript",                       
+                "target_div": "emoji-game",
+                "details": {
+                        "emojiSongs": [
+                        { "emojis": '🎅🏻👶', "song": 'Santa Baby' },
+                        { "emojis": '🪨🤴🔁🎄', "song": 'Rocking Around the Christmas Tree'},
+                        { "emojis": '❄️🦷🦷⛄', "song": 'Frosty the Snowman' },
+                        ],
+                }
+        },
         "16" : {"folder_location": "blue_wallpaper",
                         "type": "wallpaper_cursor",
                         "backgroundImageUrl": "backgrounds/blue.svg",
@@ -85,14 +93,21 @@ const contentData = {
                 "type": "javascript",
                 "target_div": "snowflake"
                 },
-        "21" : {"folder_location": "NULL", // TODO
-                "type": "NULL",
-                "target_div": "NULL"
+        "21" : {"folder_location": "coloring", // TODO
+                "type": "javascript",
+                "target_div": "coloring"
                 },
-        "22" : {"folder_location": "NULL", // TODO
-                "type": "NULL",
-                "target_div": "NULL"
-                },  
+        "22" : {"folder_location": "emoji_game",
+                "type": "javascript",                       
+                "target_div": "emoji-game",
+                "details": {
+                        "emojiSongs": [
+                        { "emojis": '🤫🌃', "song": 'Silent Night' },
+                        { "emojis": '🧊🪚 👩‍👧💋🎅', "song": 'I saw mommy kissing santa claus'},
+                        { "emojis": '🧞‍♂️👧🛎️🪨', "song": 'Jingle bell rock' },
+                        ],
+                }
+        },
         "23" : {"folder_location": "NULL", // TODO
                 "type": "NULL",
                 "target_div": "NULL"
