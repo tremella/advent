@@ -108,14 +108,11 @@ const contentData = {
                         ],
                 }
         },
-        "23" : {"folder_location": "NULL", // TODO
-                "type": "NULL",
-                "target_div": "NULL"
+        "23" : {"folder_location": "starry_night",
+                "type": "javascript",
+                "target_div": "starry_night"
                 },
-        "24" : {"folder_location": "NULL", // TODO
-                "type": "NULL",
-                "target_div": "NULL"
-                }
+
 
 };
 
