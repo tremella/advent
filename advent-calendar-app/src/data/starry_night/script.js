@@ -28,7 +28,20 @@ export function run() {
       }
       this.element.classList.add('star');
       // this.element.style.zindex = `999`;
+
+      // Add hover effect to the star
+      this.element.addEventListener('mouseenter', () => {
+        // Code to animate the star on hover
+        this.element.classList.add('star--hover');
+      });
+  
+      this.element.addEventListener('mouseleave', () => {
+        // Code to reset the star after hover
+        this.element.classList.remove('star--hover');
+      });
     }
+
+
   }
 
   // initialize canvas

@@ -41,6 +41,7 @@
   font-size: 1.7em;
   opacity: 0;
   animation: fall 3s linear forwards, spin 3s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes fall {
