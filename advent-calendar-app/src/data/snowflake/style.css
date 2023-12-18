@@ -1,6 +1,7 @@
 #snowflake {
   color: white;
   width: min-content;
+  transform: translatey(-5%);
   padding: 1rem;
   background-color: #901a1a;
   border-radius: 5%;
