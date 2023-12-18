@@ -3,44 +3,58 @@ import {sketch} from 'p5js-wrapper';
 export function run() {
     const container = document.getElementById("snowflake");
     if (document.getElementById("snowflakeEmbed")) return;
-
+    //Create heading and description
+    const descriptionBox = document.createElement("div");
+    const heading = document.createElement("h1");
+    heading.innerText = "Snowflake Craft Station";
+    descriptionBox.append(heading);
+    const description = document.createElement("p");
+    description.innerText = "Click and drag to cut the snowflake. Click 'Unfold Snowflake' to see the full design.";
+    descriptionBox.append(description);
+    const resetButton = document.createElement("button");
+    resetButton.innerText = "Reset";
+    descriptionBox.append(resetButton);
+    const unfoldButton = document.createElement("button");
+    unfoldButton.innerText = "Unfold Snowflake";
+    descriptionBox.append(unfoldButton);
     const snowflakeEmbed = document.createElement("div");
     snowflakeEmbed.id = "snowflakeEmbed"
-    container.append(snowflakeEmbed);
+    descriptionBox.append(snowflakeEmbed);
+    container.append(descriptionBox);
 
     const sketch = (s) => {
         let snowflakeCanvas;
-        let unfoldButton, restartButton;
         let drawLines = [];
         let cutLines = [];
         let isUnfolded = false;
         let currentCut = null;
         let flakePoints;
-        let windowWidth = s.windowWidth / 2;
+        let windowWidth = s.windowWidth;
+        let windowHeight = s.windowHeight;
 
         s.setup = () => {
-            s.createCanvas(windowWidth, windowWidth);
+            console.log("window dimensions", windowWidth, windowHeight)
+            let canvasDimensions = Math.min(windowWidth, windowHeight)*0.6;
+            console.log("canvas dimensions", canvasDimensions)
+            s.createCanvas(canvasDimensions, canvasDimensions);
             snowflakeCanvas = s.createGraphics(200, 200);
             flakePoints = [{ x: 0, y: 0, ordinal: 0 },
             { x: s.width / 2.3, y: 0, ordinal: 500 },
             { x: s.width / 2.3 - 1, y: s.height / 4, ordinal: 1000 }]
             snowflakeCanvas.translate(s.width / 2, s.height / 2);
-            unfoldButton = s.createButton('Unfold Snowflake');
-            unfoldButton.position(10, 10);
-            unfoldButton.mousePressed(unfoldSnowflake);
-            restartButton = s.createButton('Reset');
-            restartButton.position(10, 50);
-            restartButton.mousePressed(resetSnowflake);
+            resetButton.onclick = resetSnowflake;
+            unfoldButton.onclick = unfoldSnowflake;
             s.background(255);
         }
 
         s.draw = () => {
             s.translate(s.width / 2, s.height / 2)
             s.strokeWeight(1)
-            s.stroke("#ddd5cb")
-            s.background("#bc4749");
+            s.stroke("#000")
+            s.background("#901a1a");
             if (!isUnfolded) {
-                s.stroke("#003e1f")
+                s.stroke("#000")
+                s.strokeWeight(2)
                 drawFoldedSnowflake();
                 if (currentCut) {
                     //update end position
@@ -52,6 +66,7 @@ export function run() {
 
                 }
             } else {
+                s.stroke("#CCC")
                 drawUnfoldedSnowflake();
             }
         }
