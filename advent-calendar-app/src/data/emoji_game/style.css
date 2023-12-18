@@ -1,72 +1,146 @@
-body {
-  font-family: sans-serif;
+/* backup */
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+
+  
+  #emoji-game {
+    width: 80vw;
+    margin: 0 auto; 
+    font-size: 90%;
+    word-spacing: 0.05em;
+    overflow-y: auto;
+    /* height: 75vh;  */
+    padding: 20px;
+    transform: translatex(-5%) !important;
+  }
+  
+  #emoji-game-container h2 {
+    margin-top: -0.2em;
+    margin-bottom: -0.2em;
+  }
+  
+  
 }
 
-@media (max-width: 400px) {
-  #scene {
-    width: 15em;
-    height: 7em;
-    transform: translateY(40%);
+@media (max-width: 500px) {
+  #emoji-game {
+    width: 75vw !important;
+    transform: translatex(0%) !important;
   }
 
-  .card__face {
-    font-size: 1.1rem !important;
+  .emoji-input-container {
+    display: block !important; 
+    margin:auto;
+    
+    .emoji-song,
+    input[type="text"] {
+      margin: 0 auto; /* Center the elements horizontally */
+    }
   }
-
-  .modal-close {
-    transform: translateY(50%);
-  }
 }
 
-.scene {
-  display: inline-block;
-  width: 20em;
-  height: 8em;
-  margin: 40px 0;
-  perspective: 600px;
-  padding: 2px;
+#emoji-game {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  width: 90%; /* Use a percentage of the viewport width */
+  max-width: 500px; /* Limit the maximum size */
+  padding: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+  background-color: hsl(113, 69%, 65%);
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40' patternTransform='scale(1) rotate(50)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(113, 69%, 65%, 1)'/><path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5'  stroke-width='1' stroke='none' fill='hsla(187, 0%, 100%, 0.13)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  min-width: 0;
+
 }
 
-.card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  transition: transform 2.2s;
-  outline: 4px auto -webkit-focus-ring-color;
+#emoji-game-container div {
+  /* margin-bottom: 1em; */
+  
 }
 
-.card.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+#emoji-game-container h2 {
   text-align: center;
+  color: #333;
+  font-size: 2em;
+  font-family: 'bluesky';
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+#emoji-game-container p {
+  color: #444;
+  margin-left: 1em;
+  margin-right: 1em;
+  line-height: 1.5;
+  font-size: 1em;
   font-weight: bold;
-  font-size: 1.3rem;
+  word-wrap: break-word !important;
 }
 
-.card__face--front {
-  background: blue;
-  overflow-wrap: break-word;
+
+#emoji-game-container input[type="text"] {
+  width: 100%;
+  /* max-width: 260px; */
+  padding: 0.5em;
+  margin-top: 0.3em;
+  border: 1px solid #dddddd;
+  border-radius: 0.4em;
+  box-sizing: border-box;
+  font-size: 1em;
+  background-color: #fcf6e8;
+  flex: 1;
 }
 
-.card__face--back {
-  background: rgb(0, 0, 209);
-  transform: rotateY(-180deg);
-  overflow-wrap: break-word;
+
+#emoji-game-container button {
+  width: 90%;
+  padding: 0.6em;
+  background-color: #3db23d;
+  color: white;
+  border: none;
+  border: 2px solid #2d9613;
+  border-radius: 0.4em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 1em;
+  align-self: center;
 }
 
-p {
-  padding: 15px;
+#emoji-game-container button:hover {
+  background-color: #4cae4c;
 }
+
+#emoji-game-container #score {
+  margin-top: 1.1em;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'bluesky';
+  color: #444;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.205);
+}
+
+#emoji-game-container #answers p {
+  margin-top: 0.5em;
+  font-size: 1em;
+}
+
+.emoji-input-container {
+  margin-left: 1em;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.emoji-song {
+  width: 5.5em;
+  /* position: absolute; */
+  font-size: 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  flex: 0 0 auto; /* Flex grow, shrink, and basis set to auto */
+}
+
+

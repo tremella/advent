@@ -1,0 +1,28 @@
+
+
+#starry_night {
+  width: 800px;
+  height: 533px;
+  position: relative;
+  background: url('./starry_night.png') no-repeat center center; /* too big */
+  background-size: contain;
+  border: 10px solid #fff;
+}
+
+.star {
+  position: absolute;
+  /* width: 15px; */
+  /* height: 25px; */
+  /* background-color: red; */
+  z-index: 100;
+  opacity: 0.3;
+  /* other styles for the stars... */
+  transition: transform 0.2s ease-out;
+}
+
+.star--hover {
+  opacity: 1 !important;
+  /* background-color: yellow; */
+  /* other styles for the stars on hover... */
+  transform: scale(1.2);
+}

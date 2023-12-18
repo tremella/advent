@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Calendar.css';
 import Modal from 'react-modal';
 import YoutubeContent from '../YoutubeContent/YoutubeContent';
 import JavascriptAnimation from '../JavascriptAnimation/JavascriptAnimation';
 import StyledText from '../StyledText/StyledText';
+import SantaSleighCanvas from '../SantaSleigh/SantaSleigh';
+
 // ... import other content type components as needed
 
 Modal.setAppElement('#root'); // Set a root app element for accessibility
@@ -11,12 +13,23 @@ Modal.setAppElement('#root'); // Set a root app element for accessibility
 const Calendar = ({ contentData }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [uniqueKey, setUniqueKey] = useState(Date.now());
+  const [uniqueKey, setUniqueKey] = useState(Date.now());  
+  const [pageBackgroundImage, setPageBackgroundImage] = useState('url("/advent/backgrounds/main.svg")');
+  const [containerBgColor, setContainerBgColor] = useState('4caf4fd0'); // default color
+  const [backgroundToggled, setBackgroundToggled] = useState(false);
 
+
+
+  const updateH1Color = (color) => {    
+    const h1 = document.querySelector('.main-header');
+    if (h1) {      
+      h1.style.color = color;
+    }
+  };
 
   const getDateStatus = day => {
-    //const currentDate = new Date();
-    const currentDate = new Date(2023, 11, 20); // dummy date for testing purposes
+    const currentDate = new Date();
+    // const currentDate = new Date(2023, 11, 24); // dummy date for testing purposes
     if ((day < currentDate.getDate() && currentDate.getMonth() == 11) || currentDate.getFullYear() > 2023) {
       return "past";
     } else if (day == currentDate.getDate() && currentDate.getMonth() == 11 && currentDate.getFullYear() == 2023) {
@@ -31,12 +44,33 @@ const Calendar = ({ contentData }) => {
     setUniqueKey(Date.now()); // Update the key to a current timestamp
   };
 
-  const handleDayClick = (day, status) => {
-    // console.log(status, day)
+  useEffect(() => {
+    document.documentElement.style.backgroundImage = pageBackgroundImage;
+  }, [pageBackgroundImage]);
+
+  const handleDayClick = (day, status) => {    
     const dayData = contentData[day];
-    setSelectedDay(day);
     if ((status === "past" || status === "current") && dayData) {       
-      openModal();
+      setSelectedDay(day);
+      if (dayData.type === "wallpaper_cursor") {
+        if (!backgroundToggled) {
+          setPageBackgroundImage(`url("${dayData.backgroundImageUrl}")`); // Update the background image based on the dayData
+          setContainerBgColor(dayData.backgroundColor || '#4caf4fd0'); // Update container color
+          updateH1Color(dayData.h1Color);
+          setBackgroundToggled(true);
+        }
+        else {
+          setPageBackgroundImage(`url("/advent/backgrounds/main.svg")`);
+          setContainerBgColor('#4caf4fd0');
+          updateH1Color('rgb(25, 94, 29)');
+          setBackgroundToggled(false);
+        }
+      } else if (dayData.type === "santa"){
+        setUniqueKey(Date.now());
+      }
+      else {
+        openModal();
+      }      
       const viewedDays = JSON.parse(localStorage.getItem('viewedDays')) || {};
       viewedDays[day] = true; // Mark the day as viewed
       localStorage.setItem('viewedDays', JSON.stringify(viewedDays));
@@ -92,13 +126,17 @@ const Calendar = ({ contentData }) => {
         return  <JavascriptAnimation key={uniqueKey} data={contentData[selectedDay]} />
       case 'text':
           return <StyledText key={uniqueKey} data={dayData} />;
+      case 'wallpaper_cursor':
+        return null;          
+      case 'santa':        
+        return <SantaSleighCanvas key={uniqueKey} width={800} height={600} />
       default:
         return null;
     }
   };
 
   return (
-    <div className="calendar-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+    <div className="calendar-container" style={{ maxWidth: '800px', margin: '0 auto', backgroundColor: containerBgColor }}>
       <div className="calendar">
         {/* renders content in square */}
         {Array.from({ length: 24 }, (_, i) => (
@@ -106,7 +144,8 @@ const Calendar = ({ contentData }) => {
         ))}
         {/* renders content in modal */}
         {selectedDay !== null && contentData[selectedDay] 
-        // && contentData[selectedDay].type === 'javascript' 
+        && contentData[selectedDay].type !== 'wallpaper_cursor' 
+        && contentData[selectedDay.type] !== 'santa'
         && (
           <Modal
           isOpen={isModalOpen}
@@ -130,12 +169,16 @@ const Calendar = ({ contentData }) => {
           }}
           contentLabel="Advent Content Modal"
           >
-          <div className="modal-content">
-          {selectedDay !== null && renderContent(selectedDay)}
+          <div className="modal-content">          
+          {selectedDay !== null && renderContent(selectedDay)}          
             <button className="modal-close" onClick={closeModal}></button>
           </div>
           </Modal>
         )}
+         {/* Render alternative content for santa type */}
+         {selectedDay !== null && contentData[selectedDay] 
+        && contentData[selectedDay].type === 'santa'
+        && renderContent(selectedDay)}
         </div>
       </div>
   );

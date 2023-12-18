@@ -1,7 +1,10 @@
 export function run() {
-    const niceEmojis = ['😊', '🌟', '🎁'];
-    const naughtyEmojis = ['😈', '🍪', '🙊'];
+    const niceEmojis = ['😊', '🌟', '🎁', '👼'];
+    const birthdayEmojis = ['🎉', '🎈', '🎁', '🎊'];
+    const naughtyEmojis = ['😈', '🍪', '🙊', '💩'];
 
+
+    
     // Create Modal
     if (document.getElementById('naughtyContainer')) {
         return;
@@ -10,12 +13,16 @@ export function run() {
     var naughtyContainer = document.createElement('div');
     naughtyContainer.id = 'naughtyContainer';
 
+    // Create Header
+    var header = document.createElement('h2');
+    header.innerText = 'Naughty or Nice?';
+    
     // Create Input
     var input = document.createElement('input');
     input.type = 'text';
     input.id = 'nameInput';
     input.placeholder = 'Enter your name';
-
+    
     input.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent default action
@@ -27,12 +34,13 @@ export function run() {
     var button = document.createElement('button');
     button.innerText = 'Check';
     button.onclick = checkNaughtyOrNice;
-
+    
     // Create Result Display
     var resultDiv = document.createElement('div');
     resultDiv.id = 'result';
-
+    
     // Append elements to naughtyContainer
+    naughtyContainer.appendChild(header);
     naughtyContainer.appendChild(input);
     naughtyContainer.appendChild(button);
     naughtyContainer.appendChild(resultDiv);
@@ -52,32 +60,75 @@ export function run() {
     }
 
     function checkNaughtyOrNice() {
-        var name = document.getElementById("nameInput").value.toLowerCase();
+        // return if no value in input
+        if (!document.getElementById("nameInput").value) {
+            return;
+        }
+        var name = document.getElementById("nameInput").value.trim().toLowerCase();
         var hash = hashCode(name);
-        var result = (hash % 2 === 0) ? "Nice" : "Naughty";
+        var result = (hash % 2 === 0) ? 'Nice' : 'Naughty';
+        if (name === "neena daswani" || name === "neena" || name === "neena d") {
+            result = `Happy Birthday!!`
+        }
+        if (name === "jonathan" || name === "jonno") {
+            result = "Nice"
+        }
         displayResult(result);
     }
 
-    function createEmojiShower(isNice) {
-        const emojis = isNice ? niceEmojis : naughtyEmojis;
+    function createEmojiShower(emojiType) {
+        var emojis;
+        if (emojiType === "Naughty") {
+            emojis = naughtyEmojis;
+        }        
+        else if (emojiType.includes("Happy Birthday")) {
+            emojis = birthdayEmojis;
+        }
+        else {
+            emojis = niceEmojis;
+        }        
+
+        // Create an overlay div
+        const overlay = document.getElementsByClassName('ReactModal__Overlay')[0];
+        // overlay.className = 'emoji-overlay';
+        // body.appendChild(overlay);
+
         const container = document.getElementById('naughty'); // or wherever you want to show the emojis
         const num_emojis = 50;
         for (let i = 0; i < num_emojis; i++) {
             let emoji = document.createElement('div');
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             emoji.className = 'emoji';
-            container.appendChild(emoji);
-    
-            // Randomize the position and animation delay
-            emoji.style.left = Math.random() * 50 + 'vw';
+            // container.appendChild(emoji);
+            // document.body.appendChild(emoji);
+            overlay.appendChild(emoji);
+
+            emoji.style.left = Math.random() * 100 + 'vw'; // Adjust based on your needs
             emoji.style.animationDelay = Math.random() * 2 + 's';
+            emoji.style.zIndex = 999;
+
+            emoji.addEventListener('animationend', function() {
+                emoji.remove();
+            });
         }
     }
 
     function displayResult(result) {
         var resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<span class='" + result + "'>" + result + "</span>";
-        createEmojiShower(result === 'Nice');
+        var resultClass;
+        if (result === "Nice"){
+            resultClass = "Nice";
+            resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
+        }
+        else if (result.includes("Happy")){
+            resultClass = "Nice";
+                resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + "Happy" + "&gt;" + "</span>" + "</br>" + "<span class='" + resultClass + "'>" +  "&lt;" + "Birthday!!" + "&gt;" + "</span>";
+        }
+        else {
+            resultClass = "Naughty";
+            resultDiv.innerHTML = "<span class='" + resultClass + "'>" +  "&lt;" + result + "&gt;" + "</span>";
+        }
+        createEmojiShower(result);
     }
     input.focus();
 }
