@@ -3,44 +3,64 @@ import {sketch} from 'p5js-wrapper';
 export function run() {
     const container = document.getElementById("snowflake");
     if (document.getElementById("snowflakeEmbed")) return;
-
+    //Create heading and description
+    const descriptionBox = document.createElement("div");
+    const heading = document.createElement("h1");
+    heading.innerText = "Snowflake Craft Station";
+    descriptionBox.append(heading);
+    const description = document.createElement("p");
+    description.innerText = "Click and drag to cut the snowflake. Click 'Unfold Snowflake' to see the full design.";
+    descriptionBox.append(description);
+    const resetButton = document.createElement("button");
+    resetButton.innerText = "Reset";
+    descriptionBox.append(resetButton);
+    const unfoldButton = document.createElement("button");
+    unfoldButton.innerText = "Unfold Snowflake";
+    descriptionBox.append(unfoldButton);
     const snowflakeEmbed = document.createElement("div");
     snowflakeEmbed.id = "snowflakeEmbed"
-    container.append(snowflakeEmbed);
+    descriptionBox.append(snowflakeEmbed);
+    container.append(descriptionBox);
 
     const sketch = (s) => {
         let snowflakeCanvas;
-        let unfoldButton, restartButton;
         let drawLines = [];
         let cutLines = [];
         let isUnfolded = false;
         let currentCut = null;
         let flakePoints;
-        let windowWidth = s.windowWidth / 2;
+        let windowWidth = s.windowWidth;
+        let windowHeight = s.windowHeight;
 
         s.setup = () => {
-            s.createCanvas(windowWidth, windowWidth);
+            // console.log("window dimensions", windowWidth, windowHeight)
+            let canvasDimensions = Math.min(windowWidth, windowHeight)*0.6;
+            // console.log("canvas dimensions", canvasDimensions)
+            let canvas = s.createCanvas(canvasDimensions, canvasDimensions).elt;
             snowflakeCanvas = s.createGraphics(200, 200);
             flakePoints = [{ x: 0, y: 0, ordinal: 0 },
             { x: s.width / 2.3, y: 0, ordinal: 500 },
             { x: s.width / 2.3 - 1, y: s.height / 4, ordinal: 1000 }]
             snowflakeCanvas.translate(s.width / 2, s.height / 2);
-            unfoldButton = s.createButton('Unfold Snowflake');
-            unfoldButton.position(10, 10);
-            unfoldButton.mousePressed(unfoldSnowflake);
-            restartButton = s.createButton('Reset');
-            restartButton.position(10, 50);
-            restartButton.mousePressed(resetSnowflake);
+            resetButton.onclick = resetSnowflake;
+            unfoldButton.onclick = unfoldSnowflake;
             s.background(255);
+            function preventScroll(event) {
+                event.preventDefault();
+            }
+            canvas.addEventListener('touchstart', preventScroll, { passive: false });
+            canvas.addEventListener('touchmove', preventScroll, { passive: false });
+            canvas.addEventListener('touchend', preventScroll, { passive: false });
         }
 
         s.draw = () => {
             s.translate(s.width / 2, s.height / 2)
             s.strokeWeight(1)
-            s.stroke("#ddd5cb")
-            s.background("#bc4749");
+            s.stroke("#000")
+            s.background("#901a1a");
             if (!isUnfolded) {
-                s.stroke("#003e1f")
+                s.stroke("#000")
+                s.strokeWeight(2)
                 drawFoldedSnowflake();
                 if (currentCut) {
                     //update end position
@@ -52,6 +72,7 @@ export function run() {
 
                 }
             } else {
+                s.stroke("#CCC")
                 drawUnfoldedSnowflake();
             }
         }
@@ -126,7 +147,7 @@ export function run() {
                         }
                     }
                 }
-                console.log("found " + intersects.length + " edge intersections")
+                // console.log("found " + intersects.length + " edge intersections")
                 //check for intersects with cutlines
                 for (let cut of cutLines) {
                     let intersect = findIntersection(
@@ -145,7 +166,7 @@ export function run() {
                         intersects.push(intersect)
                     }
                 }
-                console.log("found " + intersects.length + " edge and cutline intersections")
+                // console.log("found " + intersects.length + " edge and cutline intersections")
                 let startPoint = { x: currentCut.startX, y: currentCut.startY }
                 let endPoint = { x: currentCut.endX, y: currentCut.endY }
                 //Check if interior
@@ -209,20 +230,20 @@ export function run() {
             let startPointInside = isPointInPolygon(startPoint, flakePoints)
             let endPointInside = isPointInPolygon(endPoint, flakePoints)
             if (startPointInside && endPointInside) {
-                console.log("both inside")
+                // console.log("both inside")
                 insertCut(startPoint, endPoint)
             } else if (startPointInside) {
                 insertCut(intersect, startPoint)
             } else if (endPointInside) {
                 insertCut(intersect, endPoint)
             } else {
-                console.log("no point")
+                // console.log("no point")
             }
 
         }
 
         function insertCut(intersect, dest) {
-            console.log("created cut at order " + intersect.ordinal)
+            // console.log("created cut at order " + intersect.ordinal)
             cutLines.push({ startX: intersect.x, startY: intersect.y, endX: dest.x, endY: dest.y, ordinal: intersect.ordinal })
             //add single point at intersect
             flakePoints.splice(intersect.flakeIndex, 0, intersect)
@@ -237,10 +258,10 @@ export function run() {
                 //Check if both points are inside
                 if (intersects[0].ordinal == null && intersects[1].ordinal == null) {
                     //inset cut
-                    console.log("interior cut")
+                    // console.log("interior cut")
                     return
                 } else {
-                    console.log("exterior cut")
+                    // console.log("exterior cut")
                     //Check which point is outside
                     let sidePoint, cutPoint;
                     if (intersects[0].ordinal == null) {
@@ -253,9 +274,9 @@ export function run() {
                     let otherLine = cutPoint.cutLine;
                     //This is the edge intersect for the other line
                     let otherLineStart = { x: otherLine.startX, y: otherLine.startY, ordinal: otherLine.ordinal }
-                    console.log("other line", otherLine)
-                    console.log("side point order " + sidePoint.ordinal)
-                    console.log("other line order " + otherLine.ordinal)
+                    // console.log("other line", otherLine)
+                    // console.log("side point order " + sidePoint.ordinal)
+                    // console.log("other line order " + otherLine.ordinal)
 
                     //Check if cut is on the same edge as the other line
                     let insideLoop = []
@@ -276,11 +297,11 @@ export function run() {
                     if (insideLoop.length > outsideLoop.length) {
                         removeLoop = outsideLoop;
                     }
-                    console.log("removing " + removeLoop.length + " points")
+                    // console.log("removing " + removeLoop.length + " points")
                     if (removeLoop.length == 0) {
                         //assign ordinal to cut point
                         cutPoint.ordinal = middleOrdinal(sidePoint, otherLineStart);
-                        console.log("cut point ordinal " + cutPoint.ordinal)
+                        // console.log("cut point ordinal " + cutPoint.ordinal)
                         newPoints = [cutPoint, sidePoint]
                     } else {
                         //assign ordinal to cut point
@@ -301,7 +322,7 @@ export function run() {
                 }
             } else {
                 //remove points on shorter side of cut
-                console.log("chopping from " + intersects[0].ordinal + " to " + (intersects[1].ordinal))
+                // console.log("chopping from " + intersects[0].ordinal + " to " + (intersects[1].ordinal))
                 flakePoints = removeItemsInShortestPath(flakePoints, intersects[0], intersects[1])
                 //add 
             }
@@ -426,9 +447,9 @@ export function run() {
             let point1 = { x: intersect1.x, y: intersect1.y, ordinal: intersect1.ordinal }
             let point2 = { x: intersect2.x, y: intersect2.y, ordinal: intersect2.ordinal }
             let newArr = [];
-            console.log("removing from " + index1 + " to " + index2)
+            // console.log("removing from " + index1 + " to " + index2)
             if (index1 === index2) {
-                console.log("both indexes the same")
+                // console.log("both indexes the same")
                 // If both indexes are the same, nothing to remove
                 return arr;
             }
@@ -438,27 +459,27 @@ export function run() {
             let backwardDistance = (index1 - index2 + length) % length;
 
             if (forwardDistance < backwardDistance) {
-                console.log("forward")
+                // console.log("forward")
                 // If forward path is shorter
                 if (index1 < index2) {
-                    console.log("1 first")
+                    // console.log("1 first")
                     newArr = arr.slice(0, index1)
                         .concat(point1, point2)
                         .concat(arr.slice(index2));
                 } else {
-                    console.log("2 first")
+                    // console.log("2 first")
                     newArr = arr.slice(index2, index1 + 1)
                         .concat(point2, point1);
                 }
             } else {
-                console.log("backward")
+                // console.log("backward")
                 // If backward path is shorter
                 if (index1 < index2) {
-                    console.log("1 first")
+                    // console.log("1 first")
                     newArr = arr.slice(index1, index2)
                         .concat(point2, point1);
                 } else {
-                    console.log("2 first")
+                    // console.log("2 first")
                     newArr = arr.slice(0, index2)
                         .concat(point2, point1)
                         .concat(arr.slice(index1));
