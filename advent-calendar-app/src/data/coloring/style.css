@@ -1,32 +1,14 @@
- .coloring{
-    display: flex;  
-    width:70%;
-    height: 90%;
-    border-radius: 35px;
-    align-self: center;
-    justify-self: center;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: auto;
-    padding: 2vmin;    
-    justify-content: center;
-    align-items: center;        
-  }
-   
-  .held{ 
+  #coloring { 
     position:relative;
-    overflow:hidden;
-    border-radius: 20px;
-    align-self: center;
-    justify-self: center;
+    overflow:hidden;    
      -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    border: 0px;
-    margin: auto;
-    padding: 2vmin; 
+    border: 0px;    
+    padding-bottom: 2vmin; 
     max-width: 90%;
+    width:100%;
+    height:100%;
   }
   
   .buttons{
@@ -112,17 +94,16 @@
   }
   
   @media (max-width: 768px) {
-    .coloring, .held {
-      width: 70%; /* wider on smaller screens */
+    #coloring {
+      width: 75%; /* wider on smaller screens */
       box-sizing: border-box; /* Include padding and border in the element's total width and height */
-      margin: -1em;
+      margin: -2em;
     }
   
     .buttons {
       padding: 10px;
     }
     
-    .modal-content
     #coloring .button {
       width: 7em; /* smaller width for buttons */
       font-size: 14px; /* slightly smaller font */

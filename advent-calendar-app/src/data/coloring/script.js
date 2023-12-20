@@ -4,8 +4,8 @@ import { TweenMax } from 'gsap'; // Assuming TweenMax is from gsap
 
 export function run() {  
   if (document.getElementById("ActivityDIV")) return;
-  const container = document.getElementById('coloring');
-  
+  const container = document.getElementById('coloring');  
+
   var mainHolder, colorHolder
   var btnRandom
   var svgObject, svgOutline, svgColor 
@@ -22,10 +22,6 @@ export function run() {
   const ensureDOMElements = (container) => {
     var activity_div, buttonsDiv, heldDiv;
     if (!document.getElementById('ActivityDIV')) {
-      heldDiv = document.createElement("div")
-      heldDiv.classList.add("held");
-      container.appendChild(heldDiv);
-
       activity_div = document.createElement("div");
       activity_div.id = "ActivityDIV";      
     
@@ -44,8 +40,8 @@ export function run() {
       download_btn.classList.add("button");
       buttonsDiv.appendChild(download_btn);
 
-      heldDiv.appendChild(buttonsDiv);            
-      heldDiv.appendChild(activity_div);
+      container.appendChild(buttonsDiv);            
+      container.appendChild(activity_div);
     }   
   };
 
@@ -70,16 +66,15 @@ export function run() {
   
   function swatchClick(){
     chosenColor = $(this).data('color')
-    console.log(chosenColor)
     TweenMax.to(colorHolder, fillSpeed, { backgroundColor:chosenColor })
   }
   function swatchMove(e){
-    var moveTo = (e.type == 'mouseenter')? swatchUp: swatchDown;
+    isSwatchHolderVisible = !isSwatchHolderVisible;
+    var moveTo = isSwatchHolderVisible ? swatchUp: swatchDown;
     TweenMax.to('.swatchHolder', 0.5, moveTo);
   }
   
-  function colorMe() {
-    console.log("Coloring");
+  function colorMe() { 
     TweenMax.to(this, fillSpeed, { fill: chosenColor });
   }
   
@@ -121,22 +116,14 @@ export function run() {
       TweenMax.to(this, fillSpeed, { fill: "#FFF" });
     })
   }
-  /* function svgDownloadSVG() {
-   var svgInfo = $(svgObject).clone();
-   console.clear()
-   console.log(svgInfo)
-   $(this).attr({
-            href:"data:image/svg+xml;base64,"+svgInfo.toString(),
-            download:'coloringpage.svg',
-            target:"_blank"
-    });
-  } */
+
 
   $.fn.btnDownloadSVG = download;
   
+  var isSwatchHolderVisible = false; // Track visibility state
   $.fn.makeSwatches = function() {
     var swatchHolder = $('<ol/>', {'class': 'swatchHolder'}).appendTo(this)
-        colorHolder  = $('<li/>', {'class': 'colorHolder', 'text':'Color Palette'}).css('background-color', chosenColor).appendTo(swatchHolder)
+        colorHolder  = $('<li/>', {'class': 'colorHolder', 'text':'Palette'}).css('background-color', chosenColor).appendTo(swatchHolder)
 
     $.each(colors, function() {
       var swatch = $('<li/>').appendTo(swatchHolder)
@@ -150,7 +137,7 @@ export function run() {
     var swatchHeight = $('.colorHolder').outerHeight(true) + swatchPos.top
     closeOffset = swatchHeight - $('.swatchHolder').outerHeight()
 
-    $('.swatchHolder').on('mouseenter mouseleave', swatchMove)
+    $('.colorHolder').on('click', swatchMove);
     $('.swatchHolder').css('bottom',closeOffset)
     swatchUp   = {css:{bottom:0}}
     swatchDown = {css:{bottom:closeOffset}}
