@@ -34,9 +34,9 @@ export function run() {
 
         s.setup = () => {
             // console.log("window dimensions", windowWidth, windowHeight)
-            let canvasDimensions = Math.min(windowWidth, windowHeight)*0.6;
+            let canvasDimensions = Math.min(container.clientWidth, container.clientHeight);
             // console.log("canvas dimensions", canvasDimensions)
-            let canvas = s.createCanvas(canvasDimensions, canvasDimensions).elt;
+            let canvas = s.createCanvas(canvasDimensions, canvasDimensions);
             snowflakeCanvas = s.createGraphics(200, 200);
             flakePoints = [{ x: 0, y: 0, ordinal: 0 },
             { x: s.width / 2.3, y: 0, ordinal: 500 },
@@ -48,9 +48,11 @@ export function run() {
             function preventScroll(event) {
                 event.preventDefault();
             }
-            canvas.addEventListener('touchstart', preventScroll, { passive: false });
-            canvas.addEventListener('touchmove', preventScroll, { passive: false });
-            canvas.addEventListener('touchend', preventScroll, { passive: false });
+
+            canvas.parent('snowflakeEmbed');
+            canvas.elt.addEventListener('touchstart', preventScroll, { passive: false });
+            canvas.elt.addEventListener('touchmove', preventScroll, { passive: false });
+            canvas.elt.addEventListener('touchend', preventScroll, { passive: false });
         }
 
         s.draw = () => {

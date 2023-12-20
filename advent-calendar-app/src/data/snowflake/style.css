@@ -1,12 +1,13 @@
 #snowflake {
+  position: relative;
   color: white;
-  width: min-content;
+  width: 90%;
   transform: translatey(-5%);
   padding: 1rem;
   background-color: #901a1a;
   border-radius: 5%;
   border: 3px solid white;
-  font-family:'Courier New', Courier, monospace;
+  font-family:'Courier New', Courier, monospace;  
 }
 
 #snowflake button {
@@ -33,4 +34,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+@media (max-width: 400px) {
+  #snowflake {
+      width: min-content;
+  }
 }
