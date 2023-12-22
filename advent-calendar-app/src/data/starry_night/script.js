@@ -4,11 +4,10 @@ export function run() {
   
 
 
-  const numberOfStars = 15;
+  const numberOfStars = 17;
   const starTypes = ['./src/data/starry_night/star_major.png', './src/data/starry_night/star_minor.png'];
-  let starSound = new Audio("./src/data/starry_night/starsound.mp3");
-  starSound.volume = 0.7;
-  
+  let starSound = new Audio("/advent/sounds/starsound.mp3");
+
   // defines stars
   class Star {
     constructor(element) {
@@ -19,7 +18,7 @@ export function run() {
     // where each star is placed, the size, the transparency, and the type.
     setFeatures() {
       this.element.style.left = `${Math.random() * 95}%`;
-      this.element.style.top = `${Math.random() * 33}%`;
+      this.element.style.top = `${Math.random() * 30}%`;
       this.element.style.opacity = 0.3 + (Math.random() * 0.4); // 0.3-0.7
       this.element.src = starTypes[Math.floor(Math.random() * starTypes.length)];
 
@@ -36,6 +35,7 @@ export function run() {
         this.element.classList.add('star--hover');
 
         let starSoundInstance = new Audio(starSound.src); // Create a new Audio object for this sound
+        starSoundInstance.volume = 0.8;
         starSoundInstance.play();
       });
   
@@ -59,32 +59,57 @@ export function run() {
   }
 
   const numberOfDoors = 3
-  let doorSound = new Audio("./src/data/starry_night/doorbell.mp3");
-  doorSound.volume = 0.5;
+
+  let doorSound = new Audio("/advent/sounds/doorbell.mp3");
+
   let doorFeatures = [
     { "left": "12%", "top": "72%", 
-      "width": "2em", "height": "2em"    
+      "width": "2em", "height": "2em" ,
   },
     { "left": "72%", "top": "76%", 
-      "width": "3.5em", "height": "2.5em"    
+      "width": "3.5em", "height": "2.5em",
   },
     { "left": "85%", "top": "75%", 
-      "width": "2em", "height": "2.5em"    
+      "width": "2em", "height": "2.5em",
+  },
+  ];
+
+  let glowFeatures = [
+    { "left": "14%", "top": "76%", 
+  },
+    { "left": "76%", "top": "81%", 
+  },
+    { "left": "87.5%", "top": "81%", 
   },
   ];
 
   function placeDoors() {
     for (let i = 0; i < numberOfDoors; i++) {
-      const doorElement = document.createElement('img');
+      const doorElement = document.createElement('div');
       doorElement.style.left = doorFeatures[i]["left"];
       doorElement.style.top = doorFeatures[i]["top"];
       doorElement.style.width = doorFeatures[i]["width"];
       doorElement.style.height = doorFeatures[i]["height"];
+
       doorElement.classList.add('door');
+
+
+      const doorGlow = document.createElement('img');
+      const randomDelay = Math.random() * 2; // Adjust the range of random values as needed
+
+      doorGlow.classList.add('door-glow');
+      doorGlow.style.left = glowFeatures[i]["left"];
+      doorGlow.style.top = glowFeatures[i]["top"];
+      doorGlow.style.animationDelay = `-${randomDelay}s`;
+      
+
+  
+
+      starryCanvas.appendChild(doorGlow);
       starryCanvas.appendChild(doorElement);
       doorElement.addEventListener('click', function() {
-        // doorSound.play();
         let doorSoundInstance = new Audio(doorSound.src); // Create a new Audio object for this sound
+        doorSoundInstance.volume = 0.2;
         doorSoundInstance.play();
       });
     }
@@ -124,23 +149,24 @@ starryCanvas.appendChild(overlay);
 
   
   // also Header, "Happy Holidays"
+  let messageContainer = document.createElement('div');
+  messageContainer.id = 'postcard-message-container';
+
   let message = document.createElement('h1');
   message.id = 'postcard-message'
   
-  message.innerHTML = "Happy Holidays";
-  starryCanvas.appendChild(message);
+  // message.innerHTML = "Happy Holidays";
+  message.innerHTML = "Merry Christmas"
+  starryCanvas.appendChild(messageContainer);
+  messageContainer.appendChild(message);
   
-  let messageSound = new Audio("./src/data/starry_night/music-box.mp3");
+  let messageSound = new Audio("/advent/sounds/music-box.mp3");
   // also add background music via clicking message
   message.addEventListener('click', function() {
-    messageSound.currentTime = 1.5;
+    // messageSound.currentTime = 1.5;
     messageSound.play();
 
-    setTimeout(function() {
-      messageSound.pause();
-      messageSound.currentTime = 0;
-    }, 14000); // 10000 milliseconds = 10 seconds
-    
+
   });
 
 

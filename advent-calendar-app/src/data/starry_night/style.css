@@ -3,6 +3,24 @@
   src:  url(../../fonts/MerryChristmasStar.ttf) format('truetype');
 }
 
+@media (max-width: 600px) {
+  .star {
+    width: .8em !important;
+    height: 1.2em !important;
+  }
+
+  #postcard-message {
+    margin: 1px !important;
+    padding: none !important;
+  }
+
+  #postcard-message-container {
+    margin-top: 20vmin;  
+    margin-left: 4vmin;
+    margin-right: 4vmin;
+  }
+}
+
 
 #starry_night {
   /* width: 800px; */
@@ -12,15 +30,26 @@
   position: relative;
   background: url('./starry_night.png') no-repeat center center;
   background-size: contain;
-  border: 0.3em solid #fff;
+  /* border: 0.3em solid #fff; */
+  border: 0.9vmin solid #fff;
 }
 
 #postcard-message {
   color: #ebedfc;
   font-size: 13vmin;
-  padding: 8vmin;
   font-family: 'star', sans-serif;
   text-shadow: 0 0 0.1em #73b9fc;
+  user-select: none;
+  margin: 1px !important;
+  padding: none !important;
+}
+
+
+#postcard-message-container {
+  margin-top: 20vmin;
+  margin-left: 4vmin;
+  margin-right: 4vmin;
+
 }
 
 #advice-overlay {
@@ -51,7 +80,7 @@
   opacity: 0.3;
 
   transition: transform 0.2s ease-out;
-  animation: pulse 2s infinite;
+  animation: star-pulse 2s infinite;
 }
 
 .star--hover {
@@ -62,16 +91,23 @@
 
 .door {
   position: absolute;
-  z-index: 100;
-  opacity: 0;
-  background-color: yellow;
-
-  /* transition: transform 0.2s ease-out; */
-  /* animation: pulse 2s infinite; */
-
+  /* opacity: 0.2; */
+  /* background-color: yellow; */
+  
+  
+}
+.door-glow {
+  position: absolute;
+  background-color: rgb(255, 217, 0);
+  opacity: 1;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-out;
+  animation: door-pulse 5s infinite;
 }
 
-@keyframes pulse {
+@keyframes star-pulse {
   0% {
     opacity: 0.3;
   }
@@ -80,5 +116,18 @@
   }
   100% {
     opacity: 0.3;
+  }
+}
+
+@keyframes door-pulse {
+  0% {
+    box-shadow: 0 0 10px 5px rgba(250, 185, 5, 0.1);
+    /* 10 away, 5 wide */
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(250, 185, 5, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(250, 185, 5, 0.1);
   }
 }
