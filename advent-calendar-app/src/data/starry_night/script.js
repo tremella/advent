@@ -1,10 +1,14 @@
 export function run() {
-  const numberOfStars = 13;
+
+  if (document.getElementById("postcard-message")) return;
+  
+
+
+  const numberOfStars = 15;
   const starTypes = ['./src/data/starry_night/star_major.png', './src/data/starry_night/star_minor.png'];
-
-  // Load the sound file
   let starSound = new Audio("./src/data/starry_night/starsound.mp3");
-
+  starSound.volume = 0.7;
+  
   // defines stars
   class Star {
     constructor(element) {
@@ -14,44 +18,32 @@ export function run() {
 
     // where each star is placed, the size, the transparency, and the type.
     setFeatures() {
-      this.element.style.left = `${Math.random() * 100}%`;
-      this.element.style.top = `${Math.random() * 40}%`;
+      this.element.style.left = `${Math.random() * 95}%`;
+      this.element.style.top = `${Math.random() * 33}%`;
       this.element.style.opacity = 0.3 + (Math.random() * 0.4); // 0.3-0.7
       this.element.src = starTypes[Math.floor(Math.random() * starTypes.length)];
 
-      if(this.element.src === starTypes[0]){
-        // this.element.style.width = `${Math.random() + 0.8 * 18}px`; // math.random = 0-1, so 0-20px
-        // this.element.style.height = `${(this.element.style.width) *0.6}px` ;
-
-      } else {
-        this.element.style.width = `${Math.random() + 0.8 * 16}px`; // math.random = 0-1, so 0-20px
-        this.element.style.height = `${(this.element.style.width) *0.5}px` ;
-      }
       this.element.classList.add('star');
-      // this.element.style.zindex = `999`;
 
-        // Calculate a random delay for each star
+      // Calculate a random delay for each star
       const randomDelay = Math.random() * 2; // Adjust the range of random values as needed
 
     // Add inline style for animation delay
       this.element.style.animationDelay = `-${randomDelay}s`;
 
-      // Add hover effect to the star
+      // Code to animate the star on hover
       this.element.addEventListener('mouseenter', () => {
-        // Code to animate the star on hover
         this.element.classList.add('star--hover');
-        starSound.play();
+
+        let starSoundInstance = new Audio(starSound.src); // Create a new Audio object for this sound
+        starSoundInstance.play();
       });
   
       this.element.addEventListener('mouseleave', () => {
         // Code to reset the star after hover
         this.element.classList.remove('star--hover');
-        // starSound.pause();
-        // starSound.currentTime = 0;
       });
     }
-
-
   }
 
   // initialize canvas
@@ -66,17 +58,92 @@ export function run() {
     }
   }
 
-  // next add click listener to generate sound
+  const numberOfDoors = 3
+  let doorSound = new Audio("./src/data/starry_night/doorbell.mp3");
+  doorSound.volume = 0.5;
+  let doorFeatures = [
+    { "left": "12%", "top": "72%", 
+      "width": "2em", "height": "2em"    
+  },
+    { "left": "72%", "top": "76%", 
+      "width": "3.5em", "height": "2.5em"    
+  },
+    { "left": "85%", "top": "75%", 
+      "width": "2em", "height": "2.5em"    
+  },
+  ];
 
-  // and hover listener
+  function placeDoors() {
+    for (let i = 0; i < numberOfDoors; i++) {
+      const doorElement = document.createElement('img');
+      doorElement.style.left = doorFeatures[i]["left"];
+      doorElement.style.top = doorFeatures[i]["top"];
+      doorElement.style.width = doorFeatures[i]["width"];
+      doorElement.style.height = doorFeatures[i]["height"];
+      doorElement.classList.add('door');
+      starryCanvas.appendChild(doorElement);
+      doorElement.addEventListener('click', function() {
+        // doorSound.play();
+        let doorSoundInstance = new Audio(doorSound.src); // Create a new Audio object for this sound
+        doorSoundInstance.play();
+      });
+    }
+  }
 
-  // also add background music. 
+  // transparent overlay with instructions
+let overlay = document.createElement('div');
+overlay.id = 'advice-overlay';
+overlay.style.opacity = '1';
+overlay.style.transition = 'opacity 2s'; // Change '2s' to the duration of the fade
 
+let advice = document.createElement('p');
+advice.innerHTML = "try clicking or hovering on things!";
+overlay.appendChild(advice);
+
+starryCanvas.appendChild(overlay);
+
+// Fade out and remove overlay after 10 seconds
+  setTimeout(function() {
+    overlay.style.opacity = '0';
+    setTimeout(function() {
+      if (starryCanvas.contains(overlay)) {
+        starryCanvas.removeChild(overlay);
+      }
+    }, 2000); // Wait for the fade out to finish before removing the element
+  }, 2500); // 10000 milliseconds = 10 seconds
+
+  // You can still keep the click-to-close functionality
+  overlay.addEventListener('click', function() {
+    overlay.style.opacity = '0';
+    setTimeout(function() {
+      if (starryCanvas.contains(overlay)) {
+        starryCanvas.removeChild(overlay);
+      }
+    }, 2000); // Wait for the fade out to finish before removing the element
+  });
+
+  
   // also Header, "Happy Holidays"
+  let message = document.createElement('h1');
+  message.id = 'postcard-message'
+  
+  message.innerHTML = "Happy Holidays";
+  starryCanvas.appendChild(message);
+  
+  let messageSound = new Audio("./src/data/starry_night/music-box.mp3");
+  // also add background music via clicking message
+  message.addEventListener('click', function() {
+    messageSound.currentTime = 1.5;
+    messageSound.play();
 
-  // also hover modal, "click or hover :)"
+    setTimeout(function() {
+      messageSound.pause();
+      messageSound.currentTime = 0;
+    }, 14000); // 10000 milliseconds = 10 seconds
+    
+  });
 
-  // also need to handle mobile sizing
 
   placeAllStars();
+  placeDoors();
 }
