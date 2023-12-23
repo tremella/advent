@@ -5,7 +5,7 @@ export function run() {
 
 
   const numberOfStars = 17;
-  const starTypes = ['./src/data/starry_night/star_major.png', './src/data/starry_night/star_minor.png'];
+  const starTypes = ['/advent/images/star_major.png', '/advent/images/star_minor.png'];
   let starSound = new Audio("/advent/sounds/starsound.mp3");
 
   // defines stars
