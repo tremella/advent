@@ -3,6 +3,7 @@
     width: 200px;
     height: 200px;
     cursor: pointer;
+    max-height: 100vh;    
 }
 
 .animated-mail {
@@ -206,4 +207,11 @@
 
 .letter-content p {
     /* padding-bottom: 0.1em; */
+}
+
+@media only screen and (max-height: 600px) { /* Adjust breakpoint as needed */
+    .animated-mail.final-view .letter {
+        max-height: 50vh; /* More height for horizontal view */
+        /* Other styles as needed */
+    }
 }
