@@ -117,6 +117,10 @@
     background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.0), rgba(0,0,0,0.0));
 }
 
+.animated-mail.final-view + .shadow {
+    display: none;
+}
+
 /* .letter-image:hover .animated-mail {
     transform: translateY(50px);
 }
@@ -174,16 +178,17 @@
 }
 
 .animated-mail.final-view .letter {
-    /* Styles to enlarge and center the letter for the final view */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2); /* Adjust scale as needed */
-    z-index: 10;    
+    /* Adjust these values as needed based on your content */
+    position: relative;
+    transform: scale(3); /* Increase scale as needed */
+    width: 300px; /* Adjust width */
+    height: auto; /* Adjust height or set to auto */
+    z-index: 10;
+    overflow: auto; /* Adds scroll if content overflows */
 }
 
 .letter-content {
     padding: 10px;
-    font: 10px;
+    font: 2em;
     /* Add more styling for your content here */
 }
