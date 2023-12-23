@@ -5,6 +5,7 @@ import YoutubeContent from '../YoutubeContent/YoutubeContent';
 import JavascriptAnimation from '../JavascriptAnimation/JavascriptAnimation';
 import StyledText from '../StyledText/StyledText';
 import SantaSleighCanvas from '../SantaSleigh/SantaSleigh';
+import Envelope from '../Envelope/Envelope';
 
 // ... import other content type components as needed
 
@@ -130,6 +131,8 @@ const Calendar = ({ contentData }) => {
         return null;          
       case 'santa':        
         return <SantaSleighCanvas key={uniqueKey} width={800} height={600} />
+      case 'envelope':
+        return <Envelope />
       default:
         return null;
     }
@@ -145,7 +148,7 @@ const Calendar = ({ contentData }) => {
         {/* renders content in modal */}
         {selectedDay !== null && contentData[selectedDay] 
         && contentData[selectedDay].type !== 'wallpaper_cursor' 
-        && contentData[selectedDay.type] !== 'santa'
+        && contentData[selectedDay.type] !== 'santa'        
         && (
           <Modal
           isOpen={isModalOpen}
@@ -177,7 +180,7 @@ const Calendar = ({ contentData }) => {
         )}
          {/* Render alternative content for santa type */}
          {selectedDay !== null && contentData[selectedDay] 
-        && contentData[selectedDay].type === 'santa'
+        && (contentData[selectedDay].type === 'santa')
         && renderContent(selectedDay)}
         </div>
       </div>
