@@ -53,12 +53,12 @@ function Envelope() {
                         </p>
                         <p>
                         This time around, we also had help from our talented friend 
-                        <a href="https://x.com/tichaelmurvey"> Michael Turvey</a>, 
-                        find more of his projects at <a href="https://funwebsite.fun/"> funwebsite.fun</a>
+                        <a href="https://x.com/tichaelmurvey"> Michael Turvey</a>, who made the amazing snowflake craft station on day 20.
+                        you can find more of his projects at his site <a href="https://funwebsite.fun/"> funwebsite.fun</a>.
                         </p>
-                    </div>
-                    <div className="letter-stamp">
-                        <div className="letter-stamp-inner"></div>
+                        <p>Merry Christmas!</p>
+                        <p>Love,</p>
+                        <p><i>J, M, M and GPT4</i></p>
                     </div>
                 </div>
                 <div className="top-fold"></div>
