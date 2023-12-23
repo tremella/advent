@@ -28,15 +28,15 @@ function Envelope() {
                     <div className="letter-border"></div>
                     <div className="letter-content">                        
                         <p>Thank you for being part of our Advent Calendar journey!</p>
-                        <p> This was our second project together as husband and wife (and GPT4), 
-                            and we had a lot of fun making it.
-                            You can find <a href="https://x.com/BeagleRampage"> Jess </a>
-                            and <a href="https://x.com/mayankdaswani"> Mayank </a> on X/twitter. 
-                            Do tweet at us if you liked the website!
+                        <p> This was our second project together, and we had a lot of fun making it.
+                        You can find <a href="https://x.com/BeagleRampage"> Jess </a>
+                        and <a href="https://x.com/mayankdaswani"> Mayank </a> on X/twitter. 
+                        Do tweet at us if you liked the website!
                         </p>
                         <p>
-                            This time around, we also had help from the incredible Michael Turvey,
-                            find more of his projects at <a href="https://funwebsite.fun/"> funwebsite</a>
+                        This time around, we also had help from our talented friend 
+                        <a href="https://x.com/tichaelmurvey"> Michael Turvey</a>, 
+                        find more of his projects at <a href="https://funwebsite.fun/"> funwebsite.fun</a>
                         </p>
                     </div>
                     <div className="letter-stamp">
