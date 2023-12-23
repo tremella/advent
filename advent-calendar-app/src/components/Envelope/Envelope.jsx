@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Envelope.css';
 
 function Envelope() {
@@ -18,6 +18,24 @@ function Envelope() {
             setIsZoomedIn(true);
         }
     };
+
+    useEffect(() => {
+        const closeButton = document.querySelector('.modal-close');
+        if (closeButton) {
+            if (isZoomedIn) {
+                // Adjust these values as needed
+                closeButton.style.position = 'absolute';
+                closeButton.style.top = '-20%';
+                closeButton.style.right = '-30%';
+            } else {
+                // Reset styles when not zoomed in
+                closeButton.style.position = '';
+                closeButton.style.top = '';
+                closeButton.style.right = '';
+            }
+        }
+    }, [isZoomedIn]);
+
 
     return (
         <div className="letter-image">
