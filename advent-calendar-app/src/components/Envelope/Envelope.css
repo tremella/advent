@@ -57,6 +57,11 @@
     z-index: 2;
 }
 
+.letter, .letter-border {
+    padding-left: 0;
+    margin-left: 0;
+}
+
 .animated-mail .letter {
     position: absolute;
     left: 20px;
@@ -72,6 +77,7 @@
 .animated-mail .letter .letter-border {
     height: 10px;
     width: 100%;
+    box-sizing: border-box;
     background: repeating-linear-gradient(
         -45deg,
         #cb5a5e,
@@ -81,28 +87,8 @@
     );
 }
 
-.animated-mail .letter .letter-title {
-    margin-top: 10px;
-    margin-left: 5px;
-    height: 10px;
-    width: 40%;
-    background: #cb5a5e;
-}
-
-
 .letter a {
     color: rgb(3, 168, 25) !important;    
-}
-
-.animated-mail .letter .letter-stamp {
-    margin-top: 1em;
-    /* margin-left: 120px; */
-    margin-left: 10em;
-    border-radius: 100%;
-    height: 30px;
-    width: 30px;
-    background: #cb5a5e;
-    opacity: 0.3;
 }
 
 .shadow {
@@ -119,23 +105,6 @@
 .animated-mail.final-view + .shadow {
     display: none;
 }
-
-/* .letter-image:hover .animated-mail {
-    transform: translateY(50px);
-}
-
-.letter-image:hover .animated-mail .top-fold {
-    transform: rotateX(180deg);
-    z-index: 0;
-}
-
-.letter-image:hover .animated-mail .letter {
-    height: 180px;
-}
-
-.letter-image:hover .shadow {
-    width: 250px;
-} */
 
 .letter-image .animated-mail.open {
     transform: translateY(50px);
@@ -187,7 +156,13 @@
     transform: translate(-10%, 10%) scale(1.5);
     width: 100%; /* Adjust width */
     height: 90%;    
-    z-index: 10;
+    z-index: 10;    
+}
+
+.animated-mail.final-view .letter-content {
+    max-height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 2em;
     overflow: auto; /* Adds scroll if content overflows */
 }
 
