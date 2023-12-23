@@ -35,7 +35,7 @@ export function run() {
         this.element.classList.add('star--hover');
 
         let starSoundInstance = new Audio(starSound.src); // Create a new Audio object for this sound
-        starSoundInstance.volume = 0.8;
+        starSoundInstance.volume = 0.9;
         starSoundInstance.play();
       });
   
