@@ -181,18 +181,30 @@
     width: 250px;
 }
 
+.letter-image .animated-mail.final-view .letter {
+    height: 380px;
+}
+
+
 .animated-mail.final-view .letter {
     /* Adjust these values as needed based on your content */
     position: relative;
-    transform: scale(3); /* Increase scale as needed */
-    width: 300px; /* Adjust width */
-    height: auto; /* Adjust height or set to auto */
+    transform: translate(-10%, 10%) scale(1.5);
+    width: 100%; /* Adjust width */
+    height: 90%;    
     z-index: 10;
     overflow: auto; /* Adds scroll if content overflows */
 }
 
+.modal-content .final-view + .modal-close {
+    /* New position when the letter is zoomed in */
+    position: absolute;
+    top: 10%; /* Adjust as needed */
+    right: 10%; /* Adjust as needed */
+}
+
 .letter-content {
-    padding: 10px;
+    padding: 0.5em;
     font: 2em;
     /* Add more styling for your content here */
 }
